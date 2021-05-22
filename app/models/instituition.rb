@@ -5,4 +5,6 @@ class Instituition < ApplicationRecord
   validates :description, presence :true
   validates :cnpj, presence :true
   validates :address, presence :true
+
+  has_many_attached :photos
 end
