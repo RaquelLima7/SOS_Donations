@@ -7,4 +7,6 @@ class Campaign < ApplicationRecord
   validates :description, presence :true
   validates :category, presence :true
   validates :total, presence :true
+
+  has_many_attached :photos
 end
