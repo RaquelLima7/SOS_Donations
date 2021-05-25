@@ -3,5 +3,5 @@ class Donation < ApplicationRecord
   belongs_to :campaign
   has_one :review
 
-  validates :quantity, presence :true
+  validates :quantity, presence: true
 end
