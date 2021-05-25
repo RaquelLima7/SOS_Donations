@@ -8,7 +8,7 @@
 puts "Destroying Campaign.."
 puts "Campaigns destroyed!" if Campaign.destroy_all
 puts "Destroying Instituions..."
-puts "Instituions destroyed!" if Instituition.destroy_all
+puts "Instituions destroyed!" if Institution.destroy_all
 puts "Destroying Users.."
 puts "Users destroyed!" if User.destroy_all
 
@@ -25,7 +25,7 @@ User.create(
   password: "123456",
   password_confirmation: "123456")
   User.last.photo.attach(io: File.open('app/assets/images/avatar/avatar-30.jpeg'), filename: 'avatar.jpeg', content_type: 'image/png')
-  Instituition.create(
+  Institution.create(
     user_id: User.last.id,
     name: "Associação de Comunidades de Vida Mariana - ACVM",
     cnpj: "40.228.629/0001-08",
@@ -33,7 +33,7 @@ User.create(
     description: "As comunidades que integram a ACVM se reúnem periodicamente com o propósito de crescer espiritualmente através da oração e vivenciar a dimensão comunitária baseada na partilha de vida. Porém, para além da vivência comunitária, toda a associação convive e se articula de forma integrada no intuito de se lançar na vida missionária em ações de evangelização e de cunho social.
       Realizamos obras sociais periodicamente, como o Jantar comunitário todas as quartas-feiras, onde os Moradores de Rua são bem vindos para ter uma refeição a mesa.")
       Campaign.create(
-        instituition_id: Instituition.last.id,
+        institution_id: Institution.last.id,
         category: CATEGORIES[1],
         type_donation: TYPES[0],
         name: "Jantar Comunitário",
@@ -48,28 +48,28 @@ User.create(
   password: "123456",
   password_confirmation: "123456")
   User.last.photo.attach(io: File.open('app/assets/images/avatar/avatar-18.jpeg'), filename: 'avatar.jpeg', content_type: 'image/png')
-  Instituition.create(
+  Institution.create(
     user_id: User.last.id,
     name: "Fundação EVA Nossa Terra",
     cnpj: "34.101.586/0001-00",
     address: User.last.address,
     description: "A Fundação Sara nasceu da convivência que os pais, parentes e amigos da pequena Sara tiveram com a dor e a esperança durante seu tratamento de leucemia, em 1996/1997. O transplante muito caro fez com que amigos e colegas de trabalho se unissem e promovessem a campanha “Ajude a Salvar a Vida da Sara”. Formou-se uma corrente de amor, numa demonstração de solidariedade jamais igualável.")
       Campaign.create(
-        instituition_id: Instituition.last.id,
+        institution_id: Institution.last.id,
         category: CATEGORIES[5],
         type_donation: TYPES[1],
         name: "Dia Internacional do combate ao cancer infatil",
         description: "Estamos precisando de voluntários para uma ação no Bairro de Copacabana, em que será montado um quiosque na Praia onde haverá um serviço conscientização da população na luta contra o Cancer Infatil",
         total: 3)
       Campaign.create(
-        instituition_id: Instituition.last.id,
+        institution_id: Institution.last.id,
         category: CATEGORIES[4],
         type_donation: TYPES[1],
         name: "Dia de visita às crianças com cancer",
         description: "Estamos precisando de voluntários para levar alegria e afeto para as crianças internadas com cancer no Hospital do INCA",
         total: 4)
       Campaign.create(
-        instituition_id: Instituition.last.id,
+        institution_id: Institution.last.id,
         category: CATEGORIES[2],
         type_donation: TYPES[0],
         name: "Ajuda a famílias com crianças com Cancer",
@@ -84,14 +84,14 @@ User.create(
   password: "123456",
   password_confirmation: "123456")
   User.last.photo.attach(io: File.open('app/assets/images/avatar/avatar-9.jpeg'), filename: 'avatar.jpeg', content_type: 'image/png')
-  Instituition.create(
+  Institution.create(
     user_id: User.last.id,
     name: "Associação de Amigos da Mangueira",
     cnpj: "95.083.615/0001-35",
     address: User.last.address,
     description: "A Associação de Amigos da Mangueira realiza ações sociais e de cidadania na comunidade da Mangueira/RJ")
       Campaign.create(
-        instituition_id: Instituition.last.id,
+        institution_id: Institution.last.id,
         category: CATEGORIES[0],
         type_donation: TYPES[2],
         name: "Fornecimento de Máscaras PFF2",
@@ -107,14 +107,14 @@ User.create(
   password: "123456",
   password_confirmation: "123456")
   User.last.photo.attach(io: File.open('app/assets/images/avatar/avatar-14.jpeg'), filename: 'avatar.jpeg', content_type: 'image/png')
-  Instituition.create(
+  Institution.create(
     user_id: User.last.id,
     name: "Pastoral da Saúde da Igreja Cristo Redentor",
     cnpj: "83.967.474/0001-34",
     address: User.last.address,
     description: "Somos uma Pastoral da Saúde, vinculada a Igreja Cristo Redentor e realizamos ações de acompanhamento de idosos em abrigos.")
       Campaign.create(
-        instituition_id: Instituition.last.id,
+        institution_id: Institution.last.id,
         category: CATEGORIES[0],
         type_donation: TYPES[1],
         name: "Visitação a Idosos do Abrigo Cristo Redentor",

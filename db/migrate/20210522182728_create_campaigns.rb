@@ -6,7 +6,7 @@ class CreateCampaigns < ActiveRecord::Migration[6.0]
       t.string :description
       t.integer :total
       t.integer :raised
-      t.references :instituition, null: false, foreign_key: true
+      t.references :institution, null: false, foreign_key: true
 
       t.timestamps
     end
