@@ -1,2 +1,70 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="landing-banner">
+  <div class="landing-banner-text">
+    <h3>Many people are waiting for your help...</h3>
+    <h1 style="font-size: 4rem">Let's Build a better world</h1>
+    <%= link_to "Join us!", "#", class: "btn btn-primary w-50 mt-4" %>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-4 donation-type" style="background-color: #44a245">
+      <h2>Fundrising</h2>
+      <span>Help social acts and projects by given funds!</span>
+    </div>
+    <div class="col-4 donation-type" style="background-color:  #5dbb5f">
+      <h2>Donation</h2>
+      <span>Donate food, clouthes and goods to those who really needs it!</span>
+    </div>
+    <div class="col-4 donation-type" style="background-color: #44a245">
+      <h2>Volunteer</h2>
+      <span>Give some of your time to help important actions!</span>
+    </div>
+  </div>
+  <h1 class="text-center my-5">Find our campaigns</h1>
+  <div class="row">
+    <div class="col-3 donation-categories">
+      <%= image_tag('coronavirus.jpg') %>
+      <div class="donation-categories-info text-center">
+        <h4>Coronavirus</h4>
+      </div>
+    </div>
+    <div class="col-3 donation-categories">
+      <%= image_tag('hunger-poverty.jpg') %>
+      <div class="donation-categories-info text-center">
+        <h4>Hunger and Poverty</h4>
+      </div>
+    </div>
+    <div class="col-3 donation-categories">
+      <%= image_tag('health.jpg') %>
+      <div class="donation-categories-info text-center">
+        <h4>Health</h4>
+      </div>
+    </div>
+    <div class="col-3 donation-categories">
+      <%= image_tag('eldery.jpg') %>
+      <div class="donation-categories-info text-center">
+        <h4>Eldery</h4>
+      </div>
+    </div>
+    <div class="col-3 donation-categories">
+      <%= image_tag('children.jpg') %>
+      <div class="donation-categories-info text-center">
+        <h4>Children</h4>
+      </div>
+    </div>
+    <div class="col-3 donation-categories">
+      <%= image_tag('education.jpeg') %>
+      <div class="donation-categories-info text-center">
+        <h4>Education</h4>
+      </div>
+    </div>
+    <div class="col-3 donation-categories">
+      <%= image_tag('emergency.jpg') %>
+      <div class="donation-categories-info text-center">
+        <h4>Emergency Situations</h4>
+      </div>
+    </div>
+  </div>
+  <h1 class="text-center my-5">Urgent campaigns</h1>
+
+</div>
