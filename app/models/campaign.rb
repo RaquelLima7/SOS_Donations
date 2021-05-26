@@ -1,5 +1,5 @@
 class Campaign < ApplicationRecord
-  belongs_to :instituition
+  belongs_to :institution
   has_many :donations
   has_many :accountabilities
 

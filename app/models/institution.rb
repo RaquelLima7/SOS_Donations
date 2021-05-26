@@ -1,4 +1,4 @@
-class Instituition < ApplicationRecord
+class Institution < ApplicationRecord
   belongs_to :user
   has_many :campaigns
   validates :name, presence: true
