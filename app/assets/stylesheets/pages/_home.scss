@@ -1,1 +1,86 @@
 // Specific CSS for your home-page
+.landing-banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(asset-path('hands-together.jpg'));
+  min-height: 70vh;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Place text in the middle of the image */
+.landing-banner-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.donation-type a {
+  height: 150px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.donation-type:hover {
+  opacity: 0.7;
+}
+
+.donation-categories {
+  @extend .border-0;
+  @extend .mt-3;
+  display: flex;
+  justify-content: flex-end !important;
+}
+
+.donation-categories:hover {
+  opacity: 0.7;
+}
+
+.donation-categories a img {
+
+}
+
+.donation-categories-info {
+  background-color: #0f240f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @extend .text-center;
+  max-height: 25%;
+  font-size: 1.25rem;
+}
+
+.carousel-item .card-body {
+  background-color: #00a8ec;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @extend .text-center;
+  max-height: 25%;
+  font-size: 1.25rem;
+}
+
+.card-campaign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+   filter: invert(100%);
+}
+
+.link-carousel:hover {
+  opacity: 0.7;
+}
