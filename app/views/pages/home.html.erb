@@ -2,69 +2,101 @@
   <div class="landing-banner-text">
     <h3>Many people are waiting for your help...</h3>
     <h1 style="font-size: 4rem">Let's Build a better world</h1>
-    <%= link_to "Join us!", "#", class: "btn btn-primary w-50 mt-4" %>
+    <%= link_to "Join us!", "#", class: "btn btn-primary w-50 mt-4 p-3", style: "font-size: 1.25rem; color: white" %>
   </div>
 </div>
 <div class="container">
   <div class="row">
     <div class="col-4 donation-type" style="background-color: #44a245">
-      <h2>Fundrising</h2>
-      <span>Help social acts and projects by given funds!</span>
+      <%= link_to "#" do %>
+        <h2>Fundrising</h2>
+        <span>Help social acts and projects by given funds!</span>
+      <% end %>
     </div>
     <div class="col-4 donation-type" style="background-color:  #5dbb5f">
-      <h2>Donation</h2>
-      <span>Donate food, clouthes and goods to those who really needs it!</span>
+      <%= link_to "#" do %>
+        <h2>Donation</h2>
+        <span>Donate food, clouthes and goods to those who really needs it!</span>
+      <% end %>
     </div>
     <div class="col-4 donation-type" style="background-color: #44a245">
-      <h2>Volunteer</h2>
-      <span>Give some of your time to help important actions!</span>
+      <%= link_to "#" do %>
+        <h2>Volunteer</h2>
+        <span>Give some of your time to help important actions!</span>
+      <% end %>
     </div>
   </div>
+
   <h1 class="text-center my-5">Find our campaigns</h1>
+
   <div class="row">
-    <div class="col-3 donation-categories">
-      <%= image_tag('coronavirus.jpg') %>
-      <div class="donation-categories-info text-center">
-        <h4>Coronavirus</h4>
-      </div>
+    <% @CATEGORIES.each do |category| %>
+    <div class="card col-sm-12 col-md-6 col-lg-3 donation-categories">
+      <%= link_to "#" do %>
+        <%= image_tag(category[:filename], class: "card-img-top") %>
+        <div class="card-body donation-categories-info">
+          <span><%= category[:name] %></span>
+        </div>
+      <% end %>
     </div>
-    <div class="col-3 donation-categories">
-      <%= image_tag('hunger-poverty.jpg') %>
-      <div class="donation-categories-info text-center">
-        <h4>Hunger and Poverty</h4>
-      </div>
-    </div>
-    <div class="col-3 donation-categories">
-      <%= image_tag('health.jpg') %>
-      <div class="donation-categories-info text-center">
-        <h4>Health</h4>
-      </div>
-    </div>
-    <div class="col-3 donation-categories">
-      <%= image_tag('eldery.jpg') %>
-      <div class="donation-categories-info text-center">
-        <h4>Eldery</h4>
-      </div>
-    </div>
-    <div class="col-3 donation-categories">
-      <%= image_tag('children.jpg') %>
-      <div class="donation-categories-info text-center">
-        <h4>Children</h4>
-      </div>
-    </div>
-    <div class="col-3 donation-categories">
-      <%= image_tag('education.jpeg') %>
-      <div class="donation-categories-info text-center">
-        <h4>Education</h4>
-      </div>
-    </div>
-    <div class="col-3 donation-categories">
-      <%= image_tag('emergency.jpg') %>
-      <div class="donation-categories-info text-center">
-        <h4>Emergency Situations</h4>
-      </div>
-    </div>
+    <% end %>
   </div>
+
   <h1 class="text-center my-5">Urgent campaigns</h1>
+
+  <div id="carousel-indicators-urgent" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-indicators-urgent" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-indicators-urgent" data-slide-to="1"></li>
+      <li data-target="#carousel-indicators-urgent" data-slide-to="2"></li>
+    </ol>
+    <div id="carousel-campaign" class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="card card-campaign">
+          <%= link_to "#", class: "link-carousel d-block w-75" do %>
+            <%= image_tag('education.jpg', alt: "First slide", class: "card-img-top") %>
+            <div class="d-none d-md-block card-body">
+              <h2>First Campaign</h2>
+              <p>Help us!</p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="card card-campaign">
+          <%= link_to "#", class: "link-carousel d-block w-75" do %>
+            <%= image_tag('health.jpg', alt: "Second slide", class: "d-block card-img-top") %>
+            <div class="d-none d-md-block card-body">
+              <h2>Second Campaign</h2>
+              <p>Help us!</p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="card card-campaign">
+          <%= link_to "#", class: "link-carousel d-block w-75" do %>
+            <%= image_tag('coronavirus.jpg', alt: "Second slide", class: "d-block card-img-top") %>
+            <div class="d-none d-md-block card-body">
+              <h2>Third Campaign</h2>
+              <p>Help us!</p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carousel-indicators-urgent" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-indicators-urgent" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <h1 class="text-center my-5">Latest Donations Reviews</h1>
+
+  <h1 class="text-center my-5">Anoter topic</h1>
 
 </div>

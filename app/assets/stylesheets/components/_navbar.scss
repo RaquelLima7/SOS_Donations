@@ -18,7 +18,17 @@
 }
 
 .navbar-expand-sm .navbar-nav .nav-link {
-  padding-right: 2.0rem;
-  padding-left: 2.0rem;
+  // padding-right: 2.0rem;
+  // padding-left: 2.0rem;
 }
 
+.nav-link {
+  font-size: 1.25rem;
+  margin: 0 32px;
+}
+
+.nav-link:hover {
+  transform: scale(1.1);
+  color: #b7e1b8;
+  border-bottom: 1px solid #b7e1b8;
+}

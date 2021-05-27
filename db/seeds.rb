@@ -15,7 +15,7 @@ puts "Users destroyed!" if User.destroy_all
 puts "Generating seed..."
 
 CATEGORIES = ["Coronavirus", "Hunger and Poverty", "Health", "Eldery", "Children", "Education", "Emergency Situations"]
-TYPES = ["Funds", "Voluntary", "Goods"]
+TYPES = ["Fundrising", "Donation", "Volunteer"]
 
 User.create(
   email: "sobrinho@gmail.com",
@@ -57,14 +57,14 @@ User.create(
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[5],
-        type_donation: TYPES[1],
+        type_donation: TYPES[2],
         name: "Dia Internacional do combate ao cancer infatil",
         description: "Estamos precisando de voluntários para uma ação no Bairro de Copacabana, em que será montado um quiosque na Praia onde haverá um serviço conscientização da população na luta contra o Cancer Infatil",
         total: 3)
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[4],
-        type_donation: TYPES[1],
+        type_donation: TYPES[2],
         name: "Dia de visita às crianças com cancer",
         description: "Estamos precisando de voluntários para levar alegria e afeto para as crianças internadas com cancer no Hospital do INCA",
         total: 4)
@@ -93,7 +93,7 @@ User.create(
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[0],
-        type_donation: TYPES[2],
+        type_donation: TYPES[1],
         name: "Fornecimento de Máscaras PFF2",
         description: "Estamos arrecadando doações de caixas de máscaras PFF2 para distribuição na comunidade da mangueira.   Também será feito um trabalho de conscientização para o correto uso, a fim de prevenir a transmissão do Coronavirus",
         total: 2000)
@@ -116,7 +116,7 @@ User.create(
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[0],
-        type_donation: TYPES[1],
+        type_donation: TYPES[2],
         name: "Visitação a Idosos do Abrigo Cristo Redentor",
         description: "Estamos precisando de voluntários para levar alegria e solidariedade para os idosos que vivem no abrigo Cristo Redentor.",
         total: 2)

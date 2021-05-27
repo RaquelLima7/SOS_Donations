@@ -19,12 +19,13 @@
   color: white;
 }
 
-.donation-type {
+.donation-type a {
   height: 150px;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-decoration: none;
 }
 
 .donation-type:hover {
@@ -32,27 +33,54 @@
 }
 
 .donation-categories {
-  height: 230px;
-  color: white;
+  @extend .border-0;
+  @extend .mt-3;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  margin: 0;
-  padding: 0;
+  justify-content: flex-end !important;
 }
 
 .donation-categories:hover {
   opacity: 0.7;
 }
 
-.donation-categories img {
-  width: 100%;
-  height: 100%;
-  overflow: auto;
+.donation-categories a img {
+
 }
 
 .donation-categories-info {
   background-color: #0f240f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @extend .text-center;
+  max-height: 25%;
+  font-size: 1.25rem;
 }
 
+.carousel-item .card-body {
+  background-color: #00a8ec;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @extend .text-center;
+  max-height: 25%;
+  font-size: 1.25rem;
+}
 
+.card-campaign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+   filter: invert(100%);
+}
+
+.link-carousel:hover {
+  opacity: 0.7;
+}
