@@ -50,11 +50,11 @@ ActiveRecord::Schema.define(version: 2021_05_25_232641) do
     t.string "description"
     t.integer "total"
     t.integer "raised"
-    t.bigint "institution_id", null: false
+    t.bigint "instituition_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "type_donation"
-    t.index ["institution_id"], name: "index_campaigns_on_institution_id"
+    t.index ["instituition_id"], name: "index_campaigns_on_instituition_id"
   end
 
   create_table "donations", force: :cascade do |t|
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_232641) do
     t.index ["user_id"], name: "index_donations_on_user_id"
   end
 
-  create_table "institutions", force: :cascade do |t|
+  create_table "instituitions", force: :cascade do |t|
     t.string "name"
     t.string "cnpj"
     t.string "address"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_232641) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_institutions_on_user_id"
+    t.index ["user_id"], name: "index_instituitions_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -107,10 +107,10 @@ ActiveRecord::Schema.define(version: 2021_05_25_232641) do
 
   add_foreign_key "accountabilities", "campaigns"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "campaigns", "institutions"
+  add_foreign_key "campaigns", "instituitions"
   add_foreign_key "donations", "campaigns"
   add_foreign_key "donations", "users"
-  add_foreign_key "institutions", "users"
+  add_foreign_key "instituitions", "users"
   add_foreign_key "reviews", "accountabilities"
   add_foreign_key "reviews", "donations"
 end
