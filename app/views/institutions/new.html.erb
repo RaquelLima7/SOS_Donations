@@ -1,0 +1,17 @@
+<div class="container my-5 py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="bg-white rounded p-3 shadow">
+        <h3>Create a new Institution</h3>
+        <%= simple_form_for @institution do |f| %>
+          <%= f.input :name, placeholder: 'Name of Institution' %>
+          <%= f.input :description %>
+          <%= f.input :cnpj %>
+          <%= f.input :address %>
+          <%= f.input :photos, as: :file, input_html: { multiple: true }  %>
+          <%= f.submit class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
