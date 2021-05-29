@@ -4,4 +4,12 @@ class CampaignsPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def show?
+    true
+  end
+
+  def create?
+    return true
+  end
 end

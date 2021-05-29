@@ -12,6 +12,8 @@ class CampaignsController < ApplicationController
   def create 
     @campaign = Campaign.new(campaign_params)
     @campaign.user = current_user
+    authorize @restaurant
+
     if @campaign.save
       redirect_to campaign_path(@campaign)
     else
