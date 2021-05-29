@@ -12,6 +12,8 @@ class CampaignsController < ApplicationController
   def create 
     @campaign = Campaign.new(campaign_params)
     @campaign.user = current_user
+    authorize @restaurant
+
     if @campaign.save
       redirect_to campaign_path(@campaign)
     else
@@ -34,5 +36,4 @@ class CampaignsController < ApplicationController
   def campaign_params
     params.require(:campaign).permit(:name, :description, :category, :total, :photo)
   end
-  
 end
