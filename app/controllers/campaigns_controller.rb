@@ -34,5 +34,4 @@ class CampaignsController < ApplicationController
   def campaign_params
     params.require(:campaign).permit(:name, :description, :category, :total, :photo)
   end
-  
 end
