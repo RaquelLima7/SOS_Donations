@@ -44,7 +44,8 @@
 }
 
 .donation-categories a img {
-
+  height: 180px;
+  object-fit: cover;
 }
 
 .donation-categories-info {
@@ -83,4 +84,9 @@
 
 .link-carousel:hover {
   opacity: 0.7;
+}
+
+.carousel-item a img {
+  height: 500px;
+  object-fit: cover;
 }
