@@ -32,7 +32,7 @@ User.create(
     address: User.last.address,
     description: "As comunidades que integram a ACVM se reúnem periodicamente com o propósito de crescer espiritualmente através da oração e vivenciar a dimensão comunitária baseada na partilha de vida. Porém, para além da vivência comunitária, toda a associação convive e se articula de forma integrada no intuito de se lançar na vida missionária em ações de evangelização e de cunho social.
       Realizamos obras sociais periodicamente, como o Jantar comunitário todas as quartas-feiras, onde os Moradores de Rua são bem vindos para ter uma refeição a mesa.")
-      Campa0ign.create(
+      Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[1],
         type_donation: TYPES[0],
