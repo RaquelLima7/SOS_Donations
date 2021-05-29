@@ -8,7 +8,7 @@
 puts "Destroying Campaign.."
 puts "Campaigns destroyed!" if Campaign.destroy_all
 puts "Destroying Instituions..."
-puts "Instituions destroyed!" if Institution.destroy_all
+puts "Institutions destroyed!" if Institution.destroy_all
 puts "Destroying Users.."
 puts "Users destroyed!" if User.destroy_all
 
