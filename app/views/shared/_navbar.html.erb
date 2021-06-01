@@ -37,7 +37,7 @@
           <% end %>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Donations", dashboard_path(results_query: 'donations'), class: "dropdown-item" %>
-            <%= link_to "Create a campaign", "#", class: "dropdown-item" %>
+            <%# <%= link_to "Create a campaign", new_institution_campaign_path(@institution), class: "dropdown-item" %>
             <%= link_to "Manage account", "/dashboard", class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
