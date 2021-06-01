@@ -1,7 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: #173617;
-  min-height: 100px;
+  min-height: 85px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -23,7 +23,7 @@
 }
 
 .nav-link {
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin: 0 32px;
 }
 
@@ -31,4 +31,8 @@
   transform: scale(1.1);
   color: #b7e1b8;
   border-bottom: 1px solid #b7e1b8;
+}
+
+#nav-logo {
+ width: 75px;
 }

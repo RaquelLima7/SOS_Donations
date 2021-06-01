@@ -1,7 +1,7 @@
 // Specific CSS for your home-page
 .landing-banner {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(asset-path('hands-together.jpg'));
-  min-height: 70vh;
+  min-height: 60vh;
 
   /* Position and center the image to scale nicely on all screens */
   background-position: center;
@@ -66,7 +66,7 @@
   align-items: center;
   justify-content: center;
   @extend .text-center;
-  max-height: 25%;
+  max-height: 20%;
   font-size: 1.25rem;
 }
 
@@ -87,6 +87,6 @@
 }
 
 .carousel-item a img {
-  height: 500px;
+  height: 400px;
   object-fit: cover;
 }
