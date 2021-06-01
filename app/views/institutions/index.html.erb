@@ -4,28 +4,40 @@
   </div>
 </div>
 
-<% @institutions.each do |institution| %>
-  <div class="card mb-4">
-    <div class="d-flex p-3">
-      <div class="">
-      <%# colocar código caso a institution não tenha photo %>
-        <% institution.photos.each do |photo| %>
-          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-        <% end %>
-        <div class="user-account-info mt-3">
-          <span><%= institution.name %></span>
+
+<div class="container d-flex dashboard-top-buffer">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-5">
+      <% @institutions.each do |institution| %>
+        <div class="shadow">
+          <div class="card card-institution mb-5">
+            <% if institution.photos.first.present? %>
+              <%= cl_image_tag institution.photos.first.key, class: "p-2" %>
+            <% else %>
+              <%= image_tag('neutral-institution.jpg', class: "p-2") %>
+            <% end %>
+            <div class="card-body card-body-institution p-4">
+              <h4 class="card-title card-institution-title"><%= institution.name %></h4>
+              <span class="card-text card-institution-text"><%= institution.description.truncate(250, omission: '...') %></span>
+            </div>
+            <div class="card-links-institution d-flex justify-content-around align-middle p-2">
+              <%= link_to institution_campaigns_path(institution.id), class: "nav-institution" do %>
+                <i class="fas fa-hands-helping px-2"></i><span>Campaigns</span>
+              <% end %>
+              <%= link_to institution_path(institution.id), class: "nav-institution" do %>
+                <i class="fas fa-search-plus size-icon px-2"></i><span>More Info</span>
+              <% end %>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="">
-        <p><%= institution.description %></p>
-        <p><%= institution.address %></p>
-        <span><%= institution.cnpj %></span>
-        <div class="user-account-button d-flex justify-content-between">
-          <%= link_to institution_path(institution.id) do %>
-            <i class="fas fa-search-plus size-icon"></i>
-          <% end %>
-        </div>
-      </div>
+      <% end %>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-7 d-none d-md-flex">
+      <div id="map"
+           style="width: 100%; height: 600px;"
+           data-markers="<%= @markers.to_json %>"
+           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
   </div>
-<% end %>
+</div>

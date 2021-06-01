@@ -32,6 +32,7 @@ User.create(
     address: User.last.address,
     description: "As comunidades que integram a ACVM se reúnem periodicamente com o propósito de crescer espiritualmente através da oração e vivenciar a dimensão comunitária baseada na partilha de vida. Porém, para além da vivência comunitária, toda a associação convive e se articula de forma integrada no intuito de se lançar na vida missionária em ações de evangelização e de cunho social.
       Realizamos obras sociais periodicamente, como o Jantar comunitário todas as quartas-feiras, onde os Moradores de Rua são bem vindos para ter uma refeição a mesa.")
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/acvm.png'), filename: 'institution.png', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[1],
@@ -39,6 +40,7 @@ User.create(
         name: "Jantar Comunitário",
         description: "Estamos arrecadando fundos para a realização do próximo Jantar Comunitário, que é um evento onde são recebidos 200 moradores.  Muitos somente tem essa oportunidade para ter uma refeição digna a mesa.",
         total: 1200)
+      Campaign.last.photos.attach(io: File.open('app/assets/images/institutions/jantar-solidario.jpg'), filename: 'jantar-solidario.jpg', content_type: 'image/png')
 
 User.create(
   email: "eva@gmail.com",
