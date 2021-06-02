@@ -26,12 +26,12 @@
     </div>
   </div>
   <div class="row">
-    <div class="card-body-institution p-3">
+    <div class="card-body-institution w-100 p-3">
       <span class=""><%= @institution.description.truncate(600, omission: '...') %></span>
     </div>
-    <div class="card-links-institution d-flex justify-content-around align-middle p-2 w-100">
+    <div class="card-links-institution d-flex justify-content-around align-middle p-3 w-100">
       <%= link_to institution_campaigns_path(@institution.id), class: "nav-institution" do %>
-        <i class="fas fa-hands-helping px-2"></i><span>Campaigns</span>
+        <i class="fas fa-hands-helping px-2"></i><span>See our campaigns</span>
       <% end %>
     </div>
   </div>

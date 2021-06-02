@@ -56,6 +56,7 @@ User.create(
     cnpj: "34.101.586/0001-00",
     address: User.last.address,
     description: "A Fundação Sara nasceu da convivência que os pais, parentes e amigos da pequena Sara tiveram com a dor e a esperança durante seu tratamento de leucemia, em 1996/1997. O transplante muito caro fez com que amigos e colegas de trabalho se unissem e promovessem a campanha “Ajude a Salvar a Vida da Sara”. Formou-se uma corrente de amor, numa demonstração de solidariedade jamais igualável.")
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/sara.jpeg'), filename: 'sara.jpeg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[5],
@@ -92,6 +93,7 @@ User.create(
     cnpj: "95.083.615/0001-35",
     address: User.last.address,
     description: "A Associação de Amigos da Mangueira realiza ações sociais e de cidadania na comunidade da Mangueira/RJ")
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/sos-favela.png'), filename: 'sos-favela.png', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[0],
@@ -115,6 +117,7 @@ User.create(
     cnpj: "83.967.474/0001-34",
     address: User.last.address,
     description: "Somos uma Pastoral da Saúde, vinculada a Igreja Cristo Redentor e realizamos ações de acompanhamento de idosos em abrigos.")
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/cristo.jpeg'), filename: 'cristo.jpeg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[3],
@@ -144,6 +147,7 @@ User.create(
     cnpj: "03.569.880/0001-00",
     address: User.last.address,
     description: "Somos um grupo de jovens, vinculados a Igreja São Thiago de Inhaúma e realizamos ações sociais nas comunidades da região.")
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/são-thiago.jpg'), filename: 'são-thiago.jpg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[1],
@@ -156,16 +160,17 @@ User.create(
   email: "leona@gmail.com",
   first_name: "Leona",
   last_name: "Araújo",
-  address: "Estrada Adhemar Bebiano, 2500, Inhaúma, Rio de Janeiro",
+  address: "Rua do Bispo, 121, Rio de Janeiro",
   password: "123456",
   password_confirmation: "123456")
   User.last.photo.attach(io: File.open('app/assets/images/avatar/avatar-5.jpeg'), filename: 'avatar.jpeg', content_type: 'image/png')
   Institution.create(
     user_id: User.last.id,
-    name: "Associação de Moradores da Matinha",
+    name: "Associação de Moradores do Rio Comprido",
     cnpj: "39.672.730/0001-74",
     address: User.last.address,
     description: "Somos uma associação de moradores e realizamos ações sociais em nossa comunidade.")
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/riocomprido.jpeg'), filename: 'riocomprido.jpeg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[0],
@@ -188,6 +193,7 @@ User.create(
     cnpj: "42.991.517/0001-30",
     address: User.last.address,
     description: "Somos uma Fundação que abriga e tutela crianças órfãs desde 1952.")
+    Institution.last.photos.attach(io: File.open('app/assets/images/institutions/educandário.jpg'), filename: 'educandário.jpg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[0],
