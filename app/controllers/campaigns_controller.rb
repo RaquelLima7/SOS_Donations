@@ -1,19 +1,23 @@
 class CampaignsController < ApplicationController
   def index
-    @campaigns = Campaign.all
+    if params[:category]
+      @campaigns = Campaign.where(category: params[:category])
+    else
+      @campaigns = Campaign.all
+    end
   end
 
   def show; end
 
   def new
     @campaign = Campaign.new
+    authorize @campaign
   end
   
   def create 
     @campaign = Campaign.new(campaign_params)
+    authorize @campaign
     @campaign.user = current_user
-    authorize @restaurant
-
     if @campaign.save
       redirect_to campaign_path(@campaign)
     else

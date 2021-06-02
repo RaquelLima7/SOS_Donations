@@ -1,4 +1,4 @@
-class CampaignsPolicy < ApplicationPolicy
+class CampaignPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -9,11 +9,14 @@ class CampaignsPolicy < ApplicationPolicy
     true
   end
 
-  def show?
+  def create?
     true
   end
 
-  def create?
-    return true
+  def show
+    true
   end
+  
+  
+  
 end
