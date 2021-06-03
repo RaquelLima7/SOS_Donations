@@ -204,7 +204,7 @@ User.create(
     Institution.last.photos.attach(io: File.open('app/assets/images/institutions/educandário.jpg'), filename: 'educandário.jpg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
-        category: CATEGORIES[0],
+        category: CATEGORIES[4],
         type_donation: TYPES[0],
         name: "Adote Sara!",
         description: "Sara tem apenas 3 anos e foi recebida em nosso Educandário.  Ajude-a contribuindo com fundos para custear compra de materiais escolares, roupas e alimentos para serem utilizados durante o próximo trimestre",

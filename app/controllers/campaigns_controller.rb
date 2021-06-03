@@ -4,6 +4,8 @@ class CampaignsController < ApplicationController
   def index
     if params[:category]
       @campaigns = Campaign.where(category: params[:category])
+    elsif params[:type_donation]
+      @campaigns = Campaign.where(type_donation: params[:type_donation])
     else
       @campaigns = Campaign.all
     end

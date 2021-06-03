@@ -8,19 +8,19 @@
 <div class="container">
   <div class="row">
     <div class="col-4 donation-type" style="background-color: #44a245">
-      <%= link_to "#" do %>
+      <%= link_to campaigns_path(type_donation: "Fundrising" ) do %>
         <h2>Fundrising</h2>
         <span>Help social acts and projects by given funds!</span>
       <% end %>
     </div>
     <div class="col-4 donation-type" style="background-color:  #5dbb5f">
-      <%= link_to "#" do %>
+      <%= link_to campaigns_path(type_donation: "Donation" ) do %>
         <h2>Donation</h2>
         <span>Donate food, clouthes and goods to those who really needs it!</span>
       <% end %>
     </div>
     <div class="col-4 donation-type" style="background-color: #44a245">
-      <%= link_to "#" do %>
+      <%= link_to campaigns_path(type_donation: "Volunteer" ) do %>
         <h2>Volunteer</h2>
         <span>Give some of your time to help important actions!</span>
       <% end %>
@@ -32,7 +32,7 @@
   <div class="row">
     <% @CATEGORIES.each do |category| %>
     <div class="card col-sm-12 col-md-6 col-lg-3 donation-categories">
-      <%= link_to "#" do %>
+      <%= link_to campaigns_path(category: category[:name] ) do %>
         <%= image_tag(category[:filename], class: "card-img-top") %>
         <div class="card-body donation-categories-info">
           <span><%= category[:name] %></span>
