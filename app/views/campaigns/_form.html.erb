@@ -1,6 +1,6 @@
 <%= simple_form_for @campaign do |f| %>
           <%= f.input :name, placeholder: 'Name of Campaign' %>
-          <%= f.input :description %>
+          <%= f.input :description, placeholder: 'Type a description about the capaign' %>
           <%= f.input :total %>
           <%= f.input :category, as: :select, collection: %w(Coronavirus Hunger Health Eldery Children Education Emergency), placeholder: 'Select one category' %>
           <%# <%= f.input :type_category %>
