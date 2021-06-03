@@ -1,15 +1,22 @@
-class CampaignsPolicy < ApplicationPolicy
+class CampaignPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
   end
 
-  def show?
+  def new?
     true
   end
 
   def create?
-    return true
+    true
   end
+
+  def show
+    true
+  end
+  
+  
+  
 end
