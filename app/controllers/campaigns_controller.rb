@@ -19,7 +19,7 @@ class CampaignsController < ApplicationController
   def create 
     @campaign = Campaign.new(campaign_params)
     authorize @campaign
-    @campaign.user = current_user
+    @campaign.institution == current_user
     if @campaign.save
       redirect_to campaign_path(@campaign)
     else
