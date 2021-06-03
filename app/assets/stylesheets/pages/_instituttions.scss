@@ -27,7 +27,8 @@
 }
 
 .institutions-banner img {
-  height: 40vh;
+  max-height: 600px;
+  height: auto;
   width: 100%;
   object-fit: cover;
 }
@@ -49,4 +50,13 @@
   border: white 1px solid;
 }
 
+.card-institution img {
+  height: auto;
+  object-fit: cover;
+}
+
+.card-institution img {
+  height: 200px;
+  object-fit: cover;
+}
 
