@@ -8,7 +8,7 @@
 <div class="container d-flex dashboard-top-buffer">
   <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-5">
-      <h4 class="mt-2">we have <%= pluralize(@institutions.count, 'Institution') %></h3>
+      <h4 class="mt-2">We have <%= pluralize(@institutions.count, 'Institution') %></h3>
       <hr>
       <% @institutions.each do |institution| %>
         <div class="shadow">
