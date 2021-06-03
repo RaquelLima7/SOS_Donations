@@ -3,9 +3,9 @@ class CampaignsController < ApplicationController
 
   def index
     if params[:category]
-      @campaigns = Campaign.where(category: params[:category])
+      @campaigns = policy_scope(Campaign).where(category: params[:category])
     else
-      @campaigns = Campaign.all
+      @campaigns = policy_scope(Campaign)
     end
   end
 
