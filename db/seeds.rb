@@ -40,7 +40,7 @@ User.create(
         name: "Jantar Comunitário",
         description: "Estamos arrecadando fundos para a realização do próximo Jantar Comunitário, que é um evento onde são recebidos 200 moradores.  Muitos somente tem essa oportunidade para ter uma refeição digna a mesa.",
         total: 1200)
-      Campaign.last.photos.attach(io: File.open('app/assets/images/institutions/jantar-solidario.jpg'), filename: 'jantar-solidario.jpg', content_type: 'image/png')
+      Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/jantar-solidario.jpg'), filename: 'jantar-solidario.jpg', content_type: 'image/png')
 
 User.create(
   email: "eva@gmail.com",
@@ -56,6 +56,7 @@ User.create(
     cnpj: "34.101.586/0001-00",
     address: User.last.address,
     description: "A Fundação Sara nasceu da convivência que os pais, parentes e amigos da pequena Sara tiveram com a dor e a esperança durante seu tratamento de leucemia, em 1996/1997. O transplante muito caro fez com que amigos e colegas de trabalho se unissem e promovessem a campanha “Ajude a Salvar a Vida da Sara”. Formou-se uma corrente de amor, numa demonstração de solidariedade jamais igualável.")
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/sara.jpeg'), filename: 'sara.jpeg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[5],
@@ -63,6 +64,7 @@ User.create(
         name: "Dia Internacional do combate ao cancer infatil",
         description: "Estamos precisando de voluntários para uma ação no Bairro de Copacabana, em que será montado um quiosque na Praia onde haverá um serviço conscientização da população na luta contra o Cancer Infatil",
         total: 3)
+        Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/conscientização-praia.jpg'), filename: 'conscientização-praia.jpg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[4],
@@ -70,6 +72,7 @@ User.create(
         name: "Dia de visita às crianças com cancer",
         description: "Estamos precisando de voluntários para levar alegria e afeto para as crianças internadas com cancer no Hospital do INCA",
         total: 4)
+        Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/visita-cancer.jpg'), filename: 'visita-cancer.jpg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[2],
@@ -77,6 +80,7 @@ User.create(
         name: "Ajuda a famílias com crianças com Cancer",
         description: "Estamos arrecadando fundos para ajudar famílias de 8 crianças em tratamento de cancer",
         total: 3000)
+        Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/crianças-cancer-fundrising.jpg'), filename: 'crianças-cancer-fundrising.jpg', content_type: 'image/png')
 
 User.create(
   email: "patricia@gmail.com",
@@ -92,6 +96,7 @@ User.create(
     cnpj: "95.083.615/0001-35",
     address: User.last.address,
     description: "A Associação de Amigos da Mangueira realiza ações sociais e de cidadania na comunidade da Mangueira/RJ")
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/sos-favela.png'), filename: 'sos-favela.png', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[0],
@@ -99,6 +104,7 @@ User.create(
         name: "Fornecimento de Máscaras PFF2",
         description: "Estamos arrecadando doações de caixas de máscaras PFF2 para distribuição na comunidade da mangueira.   Também será feito um trabalho de conscientização para o correto uso, a fim de prevenir a transmissão do Coronavirus",
         total: 2000)
+        Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/máscaras-pff2.jpeg'), filename: 'máscaras-pff2.jpeg', content_type: 'image/png')
 
 
 User.create(
@@ -115,6 +121,7 @@ User.create(
     cnpj: "83.967.474/0001-34",
     address: User.last.address,
     description: "Somos uma Pastoral da Saúde, vinculada a Igreja Cristo Redentor e realizamos ações de acompanhamento de idosos em abrigos.")
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/cristo.jpeg'), filename: 'cristo.jpeg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[3],
@@ -122,6 +129,7 @@ User.create(
         name: "Visitação a Idosos do Abrigo Cristo Redentor",
         description: "Estamos precisando de voluntários para levar alegria e solidariedade para os idosos que vivem no abrigo Cristo Redentor.",
         total: 2)
+      Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/visita-idosos.jpeg'), filename: 'visita-idosos.jpeg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[3],
@@ -129,6 +137,7 @@ User.create(
         name: "Enxoval para os idosos",
         description: "Estamos arrecadando fundos para a compra e distribuição de enxovais de roupas de cama para os idosos do Abrigo Cristo Redentor",
         total: 8000)
+      Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/enxoval-idosos.jpeg'), filename: 'enxoval-idosos.jpeg', content_type: 'image/png')
 
 User.create(
   email: "marcos@gmail.com",
@@ -144,6 +153,7 @@ User.create(
     cnpj: "03.569.880/0001-00",
     address: User.last.address,
     description: "Somos um grupo de jovens, vinculados a Igreja São Thiago de Inhaúma e realizamos ações sociais nas comunidades da região.")
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/são-thiago.jpg'), filename: 'são-thiago.jpg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[1],
@@ -151,21 +161,23 @@ User.create(
         name: "Campanha Inverno Solidário",
         description: "Estamos recebendo doações de roupas e cobertores para doação a desalentados na comunidade da Nova Brasília.  Doação são recebidas na Igreja de São Thiago.",
         total: 50)
+      Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/agasalhos.jpg'), filename: 'agasalhos.jpg', content_type: 'image/png')
 
 User.create(
   email: "leona@gmail.com",
   first_name: "Leona",
   last_name: "Araújo",
-  address: "Estrada Adhemar Bebiano, 2500, Inhaúma, Rio de Janeiro",
+  address: "Rua do Bispo, 121, Rio de Janeiro",
   password: "123456",
   password_confirmation: "123456")
   User.last.photo.attach(io: File.open('app/assets/images/avatar/avatar-5.jpeg'), filename: 'avatar.jpeg', content_type: 'image/png')
   Institution.create(
     user_id: User.last.id,
-    name: "Associação de Moradores da Matinha",
+    name: "Associação de Moradores do Rio Comprido",
     cnpj: "39.672.730/0001-74",
     address: User.last.address,
     description: "Somos uma associação de moradores e realizamos ações sociais em nossa comunidade.")
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/riocomprido.jpeg'), filename: 'riocomprido.jpeg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[0],
@@ -173,6 +185,7 @@ User.create(
         name: "Cestas Básicas COVID-19",
         description: "Estamos arrecadando fundos para a compra e distribuição de cestas básicas às famílias que perderam seu sustento durante a pandemia de Coronavirus.",
         total: 5000)
+      Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/cestas-basicas.png'), filename: 'cestas-basicas.png', content_type: 'image/png')
 
 User.create(
   email: "yasmin@gmail.com",
@@ -188,6 +201,7 @@ User.create(
     cnpj: "42.991.517/0001-30",
     address: User.last.address,
     description: "Somos uma Fundação que abriga e tutela crianças órfãs desde 1952.")
+    Institution.last.photos.attach(io: File.open('app/assets/images/institutions/educandário.jpg'), filename: 'educandário.jpg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[0],
@@ -195,6 +209,7 @@ User.create(
         name: "Adote Sara!",
         description: "Sara tem apenas 3 anos e foi recebida em nosso Educandário.  Ajude-a contribuindo com fundos para custear compra de materiais escolares, roupas e alimentos para serem utilizados durante o próximo trimestre",
         total: 1800)
+        Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/sara.jpeg'), filename: 'sara.jpeg', content_type: 'image/png')
 
 
 # https://www.fundacaosara.org.br/  - inspiração para a fundação EVA.

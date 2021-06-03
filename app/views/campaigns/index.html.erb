@@ -12,7 +12,11 @@
 
           <div class="card my-3" style="width: 18rem;">
 			    
-            <%= image_tag('neutral-institution.jpg')%>
+            <% if campaign.photos.first.present? %>
+              <%= cl_image_tag campaign.photos.first.key, class: "p-2" %>
+            <% else %>
+              <%= image_tag('neutral-institution.jpg', class: "p-2") %>
+            <% end %>
           </div>
           <div class="card-body">
             <h4 class="card-title"> <b><%= campaign.name.capitalize %></b></h4>

@@ -26,5 +26,4 @@ class CampaignPolicy < ApplicationPolicy
     true
   end
 
-  
 end
