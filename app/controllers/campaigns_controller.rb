@@ -3,28 +3,34 @@ class CampaignsController < ApplicationController
 
   def index
     if params[:category]
-      @campaigns = policy_scope(Campaign).where(category: params[:category])
+      @campaigns = Campaign.where(category: params[:category])
     else
-      @campaigns = policy_scope(Campaign)
+      @campaigns = Campaign.all
     end
   end
 
   def show; end
 
   def new
+    @institution = Institution.find(params[:institution])
     @campaign = Campaign.new
     authorize @campaign
   end
   
+
   def create 
-    @campaign = Campaign.new(campaign_params)
+    raise
+    @campaign = Campaign.new
+    @campaign.institution = current_user
+    @campaign.institution = Institution.find(params[:institution_id])
     authorize @campaign
-    @campaign.institution == current_user
     if @campaign.save
-      redirect_to campaign_path(@campaign)
+      redirect_to campaign_path(results_query: 'campaigns')
     else
       render :new
     end
+
+ 
   end
   
   def edit; end
