@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row ">
+    <div class=" card p-4 col-sm-12 col-md-3 col-lg-4">
+      <div class="d-flex ">
+        
+        <% if current_user.photo.present? %>
+          <%= cl_image_tag current_user.photo.key %>
+        <% else %>
+          <%= image_tag('neutral-avatar.png') %>
+        <% end %>
+        <div class=" ml-3" style="display:inline-block; align-self:flex-end;width:100%;">
+          <p><%= "#{current_user.first_name} #{current_user.last_name}" %></p>
+          <p><%= current_user.email %></p>
+  
+            <div class="d-flex justify-content-start">
+              <%# <%= link_to edit__path do %> 
+                <i class="fas fa-pencil-alt mr-4"></i>
+              <%# <%end%> 
+              <%= link_to registration_path(current_user), method: :delete, data: { confirm: "Are you sure?"} do %>
+                <i class="fa fa-trash"></i>
+              <%end%>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

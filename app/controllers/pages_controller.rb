@@ -12,4 +12,9 @@ class PagesController < ApplicationController
       { name: "Emergency Situations", filename: "emergency.jpg" }
     ]
   end
+
+  def dashboard
+    
+  end
+  
 end

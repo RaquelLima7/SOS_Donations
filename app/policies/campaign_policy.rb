@@ -17,4 +17,13 @@ class CampaignPolicy < ApplicationPolicy
     true
   end
   
+  def edit?
+    true
+  end
+  
+  
+  def update?
+    true
+  end
+
 end

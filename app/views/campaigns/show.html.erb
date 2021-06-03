@@ -1,0 +1,26 @@
+<div class="container my-5">
+  <div class="card d-flex">
+    <div class="d-flex justify-content-around ml-5 mr-5">
+      <div class="container">
+        <div class="mt-5">
+          <h1><b> <%= @campaign.name.capitalize %></b> </h1>
+        </div>
+        <div class="my-2">
+          <p class="text-justify mt-3 mr-4"> <%= @campaign.description.capitalize %>
+        </div>
+      </div>
+      <div class="div mt-3">
+        <%= image_tag('neutral-institution.jpg') %>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end mr-5 mb-4">
+    <%= link_to campaigns_path do%>
+      <i class="h3 fas fa-undo-alt mt-2 ml-4"></i>
+    <% end %>
+    <%= link_to edit_campaign_path(@campaign.id) do %>
+      <i class="h3 fas fa-pencil-alt mt-2 ml-4 mr-4"></i>
+    <% end %>
+    
+  </div>
+  </div>
+</div>
