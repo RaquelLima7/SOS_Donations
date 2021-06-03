@@ -1,13 +1,14 @@
 <div class="container">
-  <div class="row dashboard-top-buffer">
-    <div class="user-account card p-4 col-sm-12 col-md-3 col-lg-4">
-      <div class="d-flex">
+  <div class="row ">
+    <div class=" card p-4 col-sm-12 col-md-3 col-lg-4">
+      <div class="d-flex ">
+        
         <% if current_user.photo.present? %>
-          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= cl_image_tag current_user.photo.key %>
         <% else %>
           <%= image_tag('neutral-avatar.png') %>
         <% end %>
-        <div class="user-account-info ml-3" style="display:inline-block; align-self:flex-end;width:100%;">
+        <div class=" ml-3" style="display:inline-block; align-self:flex-end;width:100%;">
           <p><%= "#{current_user.first_name} #{current_user.last_name}" %></p>
           <p><%= current_user.email %></p>
   
@@ -21,7 +22,6 @@
             </div>
         </div>
       </div>
-     
     </div>
   </div>
 </div>
