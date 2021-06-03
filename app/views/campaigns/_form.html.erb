@@ -1,8 +1,8 @@
 <%= simple_form_for @campaign do |f| %>
-          <%= f.input :name, placeholder: 'Name of Institution' %>
+          <%= f.input :name, placeholder: 'Name of Campaign' %>
           <%= f.input :description %>
           <%= f.input :total %>
-          <%= f.input :type_category %>
+          <%# <%= f.input :type_category %>
           <%= f.input :photos, as: :file, input_html: { multiple: true }  %>
           <%= f.submit class: 'btn btn-primary' %>
 <% end %>

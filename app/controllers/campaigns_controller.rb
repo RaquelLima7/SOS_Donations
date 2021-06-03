@@ -1,4 +1,6 @@
 class CampaignsController < ApplicationController
+  before_action :set_campaign, only: [:show, :edit, :update]
+
   def index
     if params[:category]
       @campaigns = Campaign.where(category: params[:category])
@@ -35,6 +37,7 @@ class CampaignsController < ApplicationController
   private
   def set_campaign
     @campaign = Campaign.find(params[:id])
+    authorize @campaign
   end
 
   def campaign_params
