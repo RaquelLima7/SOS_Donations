@@ -232,7 +232,7 @@ User.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[4],
         type_donation: TYPES[0],
-        name: "Adote Sara!",
+        name: "Adopt Sara!",
         description: "Sara is only 3 years old and was received in our Educandário. Help her by contributing funds to fund purchases of school supplies, clothing, and food to be used during the next quarter.",
         total: 1800,
         raised: 0)
@@ -264,9 +264,10 @@ puts "generating Accontabilities and Reviews..."
 
 
 def review_comments(stars)
-  ["Regular Accountability.", "Missing some information.", "They have to improve their Accountability."].sample if stars == 3
-  ["Good Accountability!", "Rich Accontability information!", "Accountability almost perfect!"].sample if stars == 4
-  ["Great Accountability!", "Definitely aproved!", "Accountability perfect!"].sample if stars == 5
+  review_comments = ["Regular Accountability.", "Missing some information.", "They have to improve their Accountability."].sample if stars == 3
+  review_comments = ["Good Accountability!", "Rich Accontability information!", "Accountability almost perfect!"].sample if stars == 4
+  review_comments = ["Great Accountability!", "Definitely aproved!", "Accountability perfect!"].sample if stars == 5
+  review_comments
 end
 
 Campaign.all.select {|campaign| campaign.raised >= campaign.total}.each do |campaign|

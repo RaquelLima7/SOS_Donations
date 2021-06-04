@@ -2,7 +2,7 @@
   <div class="landing-banner-text">
     <h4>Many people are waiting for your help...</h4>
     <h1 style="font-size: 3.5rem">Let's Build a better world</h1>
-    <%= link_to "Join us!", "#", class: "btn btn-primary w-25 mt-4 p-2", style: "font-size: 1rem; color: white" %>
+    <%= link_to "Join us!", new_user_registration_path, class: "btn btn-primary w-25 mt-4 p-2", style: "font-size: 1rem; color: white" if !user_signed_in?%>
   </div>
 </div>
 <div class="container">
@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <h1 class="text-center my-5">Find our campaigns</h1>
+  <h1 class="home-title">Find Campaigns</h1>
 
   <div class="row">
     <% @CATEGORIES.each do |category| %>
@@ -42,7 +42,7 @@
     <% end %>
   </div>
 
-  <h1 class="text-center my-5">Urgent campaigns</h1>
+  <h1 class="home-title">Urgent campaigns</h1>
 
   <div id="carousel-indicators-urgent" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -51,39 +51,24 @@
       <li data-target="#carousel-indicators-urgent" data-slide-to="2"></li>
     </ol>
     <div id="carousel-campaign" class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="card card-campaign">
-          <%= link_to "#", class: "link-carousel d-block w-75" do %>
-            <%= image_tag('education.jpg', alt: "First slide", class: "card-img-top") %>
-            <div class="d-none d-md-block card-body">
-              <h2>First Campaign</h2>
-              <p>Help us!</p>
-            </div>
-          <% end %>
+      <% @urgent_campaigns.each do |campaign|%>
+        <% if campaign == @urgent_campaigns.first %>
+          <div class="carousel-item active">
+        <% else %>
+          <div class="carousel-item">
+        <% end %>
+          <div class="card card-campaign">
+            <%= link_to campaign_path(campaign.id), class: "link-carousel d-block w-75" do %>
+              <%= cl_image_tag campaign.photos.first.key, class: "card-img-top" %>
+              <div class="d-none d-md-block card-body d-flex justify-content-around">
+                <h2><%= campaign.name %></h2>
+                <p class="badge badge-warning"><%= (campaign.raised / campaign.total.to_f * 100).floor %>% already donated!</p><br>
+                <p class="badge badge-warning">Still missing: <%= campaign.total - campaign.raised %>.</p><p class="mx-4 badge badge-warning">help us to complete it!</p>
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card card-campaign">
-          <%= link_to "#", class: "link-carousel d-block w-75" do %>
-            <%= image_tag('health.jpg', alt: "Second slide", class: "d-block card-img-top") %>
-            <div class="d-none d-md-block card-body">
-              <h2>Second Campaign</h2>
-              <p>Help us!</p>
-            </div>
-          <% end %>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card card-campaign">
-          <%= link_to "#", class: "link-carousel d-block w-75" do %>
-            <%= image_tag('coronavirus.jpg', alt: "Second slide", class: "d-block card-img-top") %>
-            <div class="d-none d-md-block card-body">
-              <h2>Third Campaign</h2>
-              <p>Help us!</p>
-            </div>
-          <% end %>
-        </div>
-      </div>
+      <% end %>
     </div>
     <a class="carousel-control-prev" href="#carousel-indicators-urgent" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -95,8 +80,28 @@
     </a>
   </div>
 
-  <h1 class="text-center my-5">Latest Donations Reviews</h1>
+<h1 class="home-title">Donation Reviews</h1>
 
-  <h1 class="text-center my-5">Anoter topic</h1>
-
+  <% @latest_reviews.each do |review| %>
+    <div class="reviews-home p-3 mb-5 d-flex">
+      <div class="review-left">
+        <%= cl_image_tag review.donation.user.photo.key, class: "avatar-large" %><br>
+        <span><%= "#{review.donation.user.first_name} #{review.donation.user.last_name}" %></span><br>
+        <span><%= "Member since: #{review.donation.user.created_at.strftime("%d/%m/%Y")}" %></span><br>
+        <span class="badge badge-success"><%= "#{review.donation.user.donations.count} donations" %></span>
+      </div>
+      <div class="review-right">
+        <div class="review-comments mb-3">
+          <span><%= review.comment %>
+            <% review.star.times do %>
+              <i class="fas fa-star star text-warning"></i>
+            <% end %>
+          </span>
+        </div>
+        <span><b>Reviewing on: </b></span><br>
+        <%= cl_image_tag review.accountability.campaign.photos.first.key, class: "" %><br>
+        <span class="badge badge-warning"><%= review.accountability.campaign.name %></span><br>
+      </div>
+    </div>
+  <% end %>
 </div>
