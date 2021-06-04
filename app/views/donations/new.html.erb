@@ -2,7 +2,7 @@
   <div class="row m-5">
     <div class="card-trip card pt-2 order-card">
       <div class="p-5">
-        <h2 class="text-center"><b>Make a Donation</b></h2>
+        <h2 class="text-center"><b>Donate to <%= @campaign.name %></b></h2>
         <hr>
         <div class="d-flex white mb-3">
           <% if @campaign.photos.present? %>
@@ -13,7 +13,6 @@
             <%= image_tag('neutral-avatar.png') %>
           <% end %>
           <div class="ml-4 mt-4">
-            <h3><b><%= "#{@campaign.name}"%></b></h3>
             <h5><%= @campaign.description %></h5>
             <span class="badge btn-primary"><%= @campaign.category %></span>
             <span class="badge btn-primary"><%= @campaign.type_donation %></span>
