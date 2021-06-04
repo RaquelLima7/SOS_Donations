@@ -23,10 +23,10 @@
               <span class="card-text card-institution-text"><%= institution.description.truncate(250, omission: '...') %></span>
             </div>
             <div class="card-links-institution d-flex justify-content-around align-middle p-2">
-              <%= link_to campaigns_path(institution), class: "nav-institution" do %>
+              <%= link_to campaigns_path(institution_id: institution.id), class: "nav-institution" do %>
                 <i class="fas fa-hands-helping px-2"></i><span>Campaigns</span>
               <% end %>
-              <%= link_to institutions_path, class: "nav-institution" do %>
+              <%= link_to institution_path(institution), class: "nav-institution" do %>
                 <i class="fas fa-search-plus size-icon px-2"></i><span>More Info</span>
               <% end %>
             </div>
