@@ -13,16 +13,16 @@
             <%= image_tag('neutral-avatar.png') %>
           <% end %>
           <div class="ml-4 mt-4">
-            <h4><b><%= "#{@campaign.name}"%></b></h4>
-            <p><%= @campaign.description %></p>
+            <h3><b><%= "#{@campaign.name}"%></b></h3>
+            <h5><%= @campaign.description %></h5>
+            <span class="badge btn-primary"><%= @campaign.category %></span>
+            <span class="badge btn-primary"><%= @campaign.type_donation %></span>
+            <span class="badge btn-primary"> Total: <%= @campaign.total %></span>
+            <span class="badge btn-primary"> Collected: <%= @campaign.raised %></span>
           </div>
         </div>
         <div class="card-body ">
           <div class="mt-0">
-            <p><%= @campaign.category %></p>
-            <p><%= @campaign.type_donation %></p>
-            <p> <%= @campaign.description %></p>
-            <br>
             <%= simple_form_for [ @campaign, @donation ] do |f| %>
               <%= f.input :quantity, placeholder: 'Say How Much You Want To Donate.' %>
               <%= f.submit class: 'btn btn-primary' %>
