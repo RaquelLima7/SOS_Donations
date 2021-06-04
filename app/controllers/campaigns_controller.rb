@@ -2,11 +2,11 @@ class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update]
 
   def index
-    if params[:category]
-      @campaigns = Campaign.where(category: params[:category])
-    else
-      @campaigns = Campaign.all
-    end
+    @campaigns = Campaign.all
+
+    @campaigns = @campaigns.where(institution_id: params[:institution_id]) if params[:institution_id]
+    @campaigns = @campaigns.where(category: params[:category]) if params[:category]
+    @campaigns = @campaigns.where(type_donation: params[:type_donation]) if params[:type_donation]
   end
 
   def show; end

@@ -30,7 +30,7 @@
       <span class=""><%= @institution.description.truncate(600, omission: '...') %></span>
     </div>
     <div class="card-links-institution d-flex justify-content-around align-middle p-3 w-100">
-      <%= link_to institution_campaigns_path(@institution.id), class: "nav-institution" do %>
+      <%= link_to campaigns_path(institution_id: @institution.id), class: "nav-institution" do %>
         <i class="fas fa-hands-helping px-2"></i><span>See our campaigns</span>
       <% end %>
     </div>
