@@ -243,7 +243,7 @@ puts "generating donations..."
 
 Campaign.all.each do |campaign|
   percentage = [50, 75, 100].sample / 100.to_f  #percentage to cover the campaign
-  num_of_donors = rand(1..User.count-1) #number of donors available in DB
+  num_of_donors = rand(3..User.count-1) #number of donors available in DB
   donors = User.all.reject {|user| user == campaign.institution.user}.sample(num_of_donors) #Select a random set of donors, excluding the owner of campaign
   donors.each do |user|
     if campaign.type_donation == TYPES[2]

@@ -21,6 +21,9 @@
     </div>
     <div class="col-sm-12 col-md-6 col-lg-8 institutions-top p-3">
       <h3 class=""><%= @institution.name %></h3>
+      <% if @rating %>
+        <span class="badge badge-warning p-2"><%= @rating %>% positive feedback</span><br>
+      <% end %>
       <span><%= @institution.address %></span><br>
       <span>CNPJ: <%= @institution.cnpj %></span>
     </div>
@@ -31,8 +34,38 @@
     </div>
     <div class="card-links-institution d-flex justify-content-around align-middle p-3 w-100">
       <%= link_to campaigns_path(institution_id: @institution.id), class: "nav-institution" do %>
-        <i class="fas fa-hands-helping px-2"></i><span>See our campaigns</span>
+        <span class="badge badge-info p-2" style="font-size: 1.25rem"><i class="fas fa-hands-helping px-2 "></i>See our campaigns</span>
+
       <% end %>
     </div>
   </div>
+
+  <% if @rating %>
+    <h1 class="home-title">See Donation's Accountability Reviews for this Institution</h1>
+  <% else %>
+    <h1 class="badge badge-warning">This Institution still have no Accountability Reviews</h1>
+  <% end %>
+
+  <% @institution.reviews.each do |review| %>
+    <div class="reviews-home p-3 mb-5 d-flex">
+      <div class="review-left">
+        <%= cl_image_tag review.donation.user.photo.key, class: "avatar-large" %><br>
+        <span><%= "#{review.donation.user.first_name} #{review.donation.user.last_name}" %></span><br>
+        <span><%= "Member since: #{review.donation.user.created_at.strftime("%d/%m/%Y")}" %></span><br>
+        <span class="badge badge-success"><%= "#{review.donation.user.donations.count} donations" %></span>
+      </div>
+      <div class="review-right">
+        <div class="review-comments mb-3">
+          <span><%= review.comment %>
+            <% review.star.times do %>
+              <i class="fas fa-star star text-warning"></i>
+            <% end %>
+          </span>
+        </div>
+        <span><b>Reviewing on: </b></span><br>
+        <%= cl_image_tag review.accountability.campaign.photos.first.key, class: "" %><br>
+        <span class="badge badge-warning"><%= review.accountability.campaign.name %></span><br>
+      </div>
+    </div>
+  <% end %>
 </div>
