@@ -4,6 +4,8 @@ class CampaignsController < ApplicationController
   def index
     if params[:category]
       @campaigns = Campaign.where(category: params[:category])
+    elsif params[:institution_id]
+      @campaigns = Campaign.find(params[:institution_id])      
     else
       @campaigns = Campaign.all
     end
