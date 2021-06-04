@@ -96,3 +96,26 @@
   height: 400px;
   object-fit: cover;
 }
+
+.reviews-home {
+  background-color: #6fc371;
+}
+
+.review-left {
+  min-width: 25%;
+}
+
+.review-right img {
+  height: 15vh;
+}
+
+.home-title {
+  @extend .text-center;
+  @extend .my-5;
+  @extend .p-2;
+  @extend .badge;
+  @extend .badge-success;
+  font-size: 2.5rem;
+  @extend .w-100;
+}
+
