@@ -22,7 +22,7 @@ puts "Users destroyed!" if User.destroy_all
 
 puts "Generating seed..."
 
-CATEGORIES = ["Coronavirus", "Hunger and Poverty", "Health", "Eldery", "Children", "Education", "Emergency Situations"]
+CATEGORIES = ["Coronavirus", "Hunger and Poverty", "Health", "Eldery", "Children", "Education", "Emergency Situations", "Animal causes"]
 TYPES = ["Fundrising", "Donation", "Volunteer"]
 
 User.create(
@@ -238,12 +238,37 @@ User.create(
         raised: 0)
         Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/sara.jpeg'), filename: 'sara.jpeg', content_type: 'image/png')
 
+User.create(
+  email: "julia@gmail.com",
+  first_name: "Julia",
+  last_name: "Lemos",
+  address: "Avenida Dom Helder Camara, 12, Rio de Janeiro",
+  password: "123456",
+  password_confirmation: "123456")
+  User.last.photo.attach(io: File.open('app/assets/images/avatar/avatar-32.jpeg'), filename: 'avatar.jpeg', content_type: 'image/png')
+  Institution.create(
+    user_id: User.last.id,
+    name: "Associação Protetora dos Animais do Jacarezinho",
+    cnpj: "39.672.730/0001-74",
+    address: User.last.address,
+    description: "
+We are an association of animal friends that maintains a kennel for abandoned dogs and cats in the community of Jacarezinho.")
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/animal-jacarezinho.jpg'), filename: 'animal-jacarezinho.jpg', content_type: 'image/png')
+      Campaign.create(
+        institution_id: Institution.last.id,
+        category: CATEGORIES[7],
+        type_donation: TYPES[0],
+        name: "Feed and care our animals",
+        description: "We are raising funds to buy rations, hygiene materials and vaccines for the animals in our kennel.",
+        total: 2500,
+        raised: 0)
+      Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/pet-care.jpg'), filename: 'pet-care.jpg', content_type: 'image/png')
 
 puts "generating donations..."
 
 Campaign.all.each do |campaign|
   percentage = [50, 75, 100].sample / 100.to_f  #percentage to cover the campaign
-  num_of_donors = rand(1..User.count-1) #number of donors available in DB
+  num_of_donors = rand(3..User.count-1) #number of donors available in DB
   donors = User.all.reject {|user| user == campaign.institution.user}.sample(num_of_donors) #Select a random set of donors, excluding the owner of campaign
   donors.each do |user|
     if campaign.type_donation == TYPES[2]

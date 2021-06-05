@@ -5,7 +5,9 @@ class InstitutionsController < ApplicationController
     @institutions = policy_scope(Institution)
   end
 
-  def show; end
+  def show
+
+  end
 
   def new
     @institution = Institution.new
