@@ -11,6 +11,8 @@ class Campaign < ApplicationRecord
 
   has_many_attached :photos
 
+
+
   def indicator
     if self.type_donation == "Volunteer"
       "#{(self.raised / self.total.to_f * 100).floor}%  already Volunteered"

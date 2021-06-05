@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require "pry-byebug"
+# require "pry-byebug"
 
 puts "Destroying Reviews.."
 puts "Reviews destroyed!" if Review.destroy_all
