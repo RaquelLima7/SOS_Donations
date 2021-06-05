@@ -11,6 +11,16 @@ class Campaign < ApplicationRecord
 
   has_many_attached :photos
 
+  def total_expression
+    if self.type_donation == "Volunteer"
+      "Objective: #{self.total} Voluntaries"
+    elseif self.type_donation == "Fundrising"
+      "Objective: R$#{self.total}"
+    else
+      "Objective: #{self.total} Donations"
+    end
+  end
+
   def indicator
     if self.type_donation == "Volunteer"
       "#{(self.raised / self.total.to_f * 100).floor}%  already Volunteered"
