@@ -14,9 +14,10 @@
               <% end %>
             <div class="card-body">
               <h4 class="card-title"> <strong><%= campaign.name %></strong></h4>
-                <div class="d-flex justify-content-between align-items-center"> 
-                  <span class="badge btn-primary mr-3"> Total: <%= campaign.total %></span>
-                  <span class="badge btn-primary mr-3"> Collected: <%= campaign.raised %></span>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="badge btn-primary mr-3"> <%=campaign.total_expression%><span>
+                 
+                  <span class="badge btn-primary mr-3"> <%=campaign.indicator%><span>
                   <%= link_to  campaign do %>
                     <i class="h4 fas fa-search-plus size: 5x"></i>
                   <% end %>		
