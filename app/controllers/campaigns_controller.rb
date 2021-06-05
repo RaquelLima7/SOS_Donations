@@ -3,7 +3,6 @@ class CampaignsController < ApplicationController
 
   def index
     @campaigns = Campaign.all
-
     @campaigns = @campaigns.where(institution_id: params[:institution_id]) if params[:institution_id]
     @campaigns = @campaigns.where(category: params[:category]) if params[:category]
     @campaigns = @campaigns.where(type_donation: params[:type_donation]) if params[:type_donation]
