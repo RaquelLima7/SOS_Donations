@@ -5,7 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts "Destroying Campaign.."
+require "pry-byebug"
+
+puts "Destroying Reviews.."
+puts "Reviews destroyed!" if Review.destroy_all
+puts "Destroying Accontabilities.."
+puts "Accontabilities destroyed!" if Accountability.destroy_all
+puts "Destroying Donations.."
+puts "Donations destroyed!" if Donation.destroy_all
+puts "Destroying Campaigns.."
 puts "Campaigns destroyed!" if Campaign.destroy_all
 puts "Destroying Instituions..."
 puts "Institutions destroyed!" if Institution.destroy_all
@@ -30,16 +38,17 @@ User.create(
     name: "Associação de Comunidades de Vida Mariana - ACVM",
     cnpj: "4.228.629/0001-08",
     address: User.last.address,
-    description: "As comunidades que integram a ACVM se reúnem periodicamente com o propósito de crescer espiritualmente através da oração e vivenciar a dimensão comunitária baseada na partilha de vida. Porém, para além da vivência comunitária, toda a associação convive e se articula de forma integrada no intuito de se lançar na vida missionária em ações de evangelização e de cunho social.
-      Realizamos obras sociais periodicamente, como o Jantar comunitário todas as quartas-feiras, onde os Moradores de Rua são bem vindos para ter uma refeição a mesa.")
+    description: "The ACVM communities meet periodically with the purpose of growing spiritually through prayer and experiencing the community dimension based on sharing life. However, in addition to community experience, the entire association lives and articulates itself in an integrated manner in order to launch itself into missionary life in actions of evangelization and of a social nature.
+      We periodically carry out social works, such as the Community Dinner every Wednesday, where homeless people are welcome to have a meal at the table.")
   Institution.last.photos.attach(io: File.open('app/assets/images/institutions/acvm.png'), filename: 'institution.png', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[1],
         type_donation: TYPES[0],
-        name: "Jantar Comunitário",
-        description: "Estamos arrecadando fundos para a realização do próximo Jantar Comunitário, que é um evento onde são recebidos 200 moradores.  Muitos somente tem essa oportunidade para ter uma refeição digna a mesa.",
-        total: 1200)
+        name: "Communitary Dinner",
+        description: "We are raising funds for the next Community Dinner, which is an event where 200 residents are received. Many only have this opportunity to have a decent meal at the table.",
+        total: 1200,
+        raised: 0)
       Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/jantar-solidario.jpg'), filename: 'jantar-solidario.jpg', content_type: 'image/png')
 
 User.create(
@@ -55,31 +64,34 @@ User.create(
     name: "Fundação EVA Nossa Terra",
     cnpj: "34.101.586/0001-00",
     address: User.last.address,
-    description: "A Fundação Sara nasceu da convivência que os pais, parentes e amigos da pequena Sara tiveram com a dor e a esperança durante seu tratamento de leucemia, em 1996/1997. O transplante muito caro fez com que amigos e colegas de trabalho se unissem e promovessem a campanha “Ajude a Salvar a Vida da Sara”. Formou-se uma corrente de amor, numa demonstração de solidariedade jamais igualável.")
+    description: "The Fundação Sara was born from the coexistence that the parents, relatives and friends of little Sara had with the pain and hope during her treatment for leukemia, in 1996/1997. The very expensive transplant made friends and co-workers come together and promote the “Help Save Sara's Life” campaign. A current of love was formed, in a demonstration of solidarity that was never equaled.")
   Institution.last.photos.attach(io: File.open('app/assets/images/institutions/sara.jpeg'), filename: 'sara.jpeg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[5],
         type_donation: TYPES[2],
-        name: "Dia Internacional do combate ao cancer infatil",
-        description: "Estamos precisando de voluntários para uma ação no Bairro de Copacabana, em que será montado um quiosque na Praia onde haverá um serviço conscientização da população na luta contra o Cancer Infatil",
-        total: 3)
+        name: "International Day to Combat Childhood Cancer",
+        description: "We are in need of volunteers for an action in the Copacabana neighborhood, where a kiosk will be set up in Praia where there will be a public awareness service in the fight against Childhood Cancer",
+        total: 3,
+        raised: 0)
         Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/conscientização-praia.jpg'), filename: 'conscientização-praia.jpg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[4],
         type_donation: TYPES[2],
-        name: "Dia de visita às crianças com cancer",
-        description: "Estamos precisando de voluntários para levar alegria e afeto para as crianças internadas com cancer no Hospital do INCA",
-        total: 4)
+        name: "Day to visit children with cancer",
+        description: "We are in need of volunteers to bring joy and affection to children hospitalized with cancer at the INCA Hospital",
+        total: 4,
+        raised: 0)
         Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/visita-cancer.jpg'), filename: 'visita-cancer.jpg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[2],
         type_donation: TYPES[0],
-        name: "Ajuda a famílias com crianças com Cancer",
-        description: "Estamos arrecadando fundos para ajudar famílias de 8 crianças em tratamento de cancer",
-        total: 3000)
+        name: "Helping Families having Children with Cancer",
+        description: "We are raising funds to help families of 8 children in cancer treatment",
+        total: 3000,
+        raised: 0)
         Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/crianças-cancer-fundrising.jpg'), filename: 'crianças-cancer-fundrising.jpg', content_type: 'image/png')
 
 User.create(
@@ -89,21 +101,22 @@ User.create(
   address: "Rua São Luiz Gonzaga, 1173, São Cristóvão, Rio de Janeiro",
   password: "123456",
   password_confirmation: "123456")
-  User.last.photo.attach(io: File.open('app/assets/images/avatar/avatar-9.jpeg'), filename: 'avatar.jpeg', content_type: 'image/png')
+  User.last.photo.attach(io: File.open('app/assets/images/avatar/avatar-22.jpeg'), filename: 'avatar.jpeg', content_type: 'image/png')
   Institution.create(
     user_id: User.last.id,
     name: "Associação de Amigos da Mangueira",
     cnpj: "95.083.615/0001-35",
     address: User.last.address,
-    description: "A Associação de Amigos da Mangueira realiza ações sociais e de cidadania na comunidade da Mangueira/RJ")
+    description: "The Association of Friends of Mangueira carries out social and citizenship actions in the community of Mangueira/RJ")
   Institution.last.photos.attach(io: File.open('app/assets/images/institutions/sos-favela.png'), filename: 'sos-favela.png', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[0],
         type_donation: TYPES[1],
         name: "Fornecimento de Máscaras PFF2",
-        description: "Estamos arrecadando doações de caixas de máscaras PFF2 para distribuição na comunidade da mangueira.   Também será feito um trabalho de conscientização para o correto uso, a fim de prevenir a transmissão do Coronavirus",
-        total: 2000)
+        description: "We are raising donations of PFF2 mask boxes for distribution to the hose community. There will also be an awareness work for the correct use, in order to prevent the transmission of Coronavirus",
+        total: 2000,
+        raised: 0)
         Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/máscaras-pff2.jpeg'), filename: 'máscaras-pff2.jpeg', content_type: 'image/png')
 
 
@@ -120,23 +133,25 @@ User.create(
     name: "Pastoral da Saúde da Igreja Cristo Redentor",
     cnpj: "83.967.474/0001-34",
     address: User.last.address,
-    description: "Somos uma Pastoral da Saúde, vinculada a Igreja Cristo Redentor e realizamos ações de acompanhamento de idosos em abrigos.")
+    description: "We are a Ministry of Health, linked to the Church of Christ the Redeemer and we carry out accompaniment actions for the elderly in shelters.")
   Institution.last.photos.attach(io: File.open('app/assets/images/institutions/cristo.jpeg'), filename: 'cristo.jpeg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[3],
         type_donation: TYPES[2],
-        name: "Visitação a Idosos do Abrigo Cristo Redentor",
-        description: "Estamos precisando de voluntários para levar alegria e solidariedade para os idosos que vivem no abrigo Cristo Redentor.",
-        total: 2)
+        name: "Visitation to the Elderly of the Christ the Redeemer Shelter",
+        description: "We are in need of volunteers to bring joy and solidarity to the elderly who live in the Cristo Redentor shelter.",
+        total: 2,
+        raised: 0)
       Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/visita-idosos.jpeg'), filename: 'visita-idosos.jpeg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[3],
         type_donation: TYPES[0],
-        name: "Enxoval para os idosos",
-        description: "Estamos arrecadando fundos para a compra e distribuição de enxovais de roupas de cama para os idosos do Abrigo Cristo Redentor",
-        total: 8000)
+        name: "Trousseau for the elderly",
+        description: "We are raising funds for the purchase and distribution of bedding sets for the elderly at Abrigo Cristo Redentor",
+        total: 8000,
+        raised: 0)
       Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/enxoval-idosos.jpeg'), filename: 'enxoval-idosos.jpeg', content_type: 'image/png')
 
 User.create(
@@ -152,15 +167,16 @@ User.create(
     name: "Grupo Jovem da Igreja São Thiago",
     cnpj: "03.569.880/0001-00",
     address: User.last.address,
-    description: "Somos um grupo de jovens, vinculados a Igreja São Thiago de Inhaúma e realizamos ações sociais nas comunidades da região.")
+    description: "We are a group of young people, linked to Igreja São Thiago de Inhaúma and carry out social actions in communities in the region.")
   Institution.last.photos.attach(io: File.open('app/assets/images/institutions/são-thiago.jpg'), filename: 'são-thiago.jpg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[1],
         type_donation: TYPES[1],
-        name: "Campanha Inverno Solidário",
-        description: "Estamos recebendo doações de roupas e cobertores para doação a desalentados na comunidade da Nova Brasília.  Doação são recebidas na Igreja de São Thiago.",
-        total: 50)
+        name: "Solidarity Winter Campaign",
+        description: "We are receiving donations of clothes and blankets to be donated to despondent people in the Nova Brasília community. Donations are received at the Church of São Thiago.",
+        total: 50,
+        raised: 0)
       Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/agasalhos.jpg'), filename: 'agasalhos.jpg', content_type: 'image/png')
 
 User.create(
@@ -176,15 +192,16 @@ User.create(
     name: "Associação de Moradores do Rio Comprido",
     cnpj: "39.672.730/0001-74",
     address: User.last.address,
-    description: "Somos uma associação de moradores e realizamos ações sociais em nossa comunidade.")
+    description: "We are an association of residents and carry out social actions in our community.")
   Institution.last.photos.attach(io: File.open('app/assets/images/institutions/riocomprido.jpeg'), filename: 'riocomprido.jpeg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[0],
         type_donation: TYPES[0],
-        name: "Cestas Básicas COVID-19",
-        description: "Estamos arrecadando fundos para a compra e distribuição de cestas básicas às famílias que perderam seu sustento durante a pandemia de Coronavirus.",
-        total: 5000)
+        name: "COVID-19 Food Baskets",
+        description: "We are raising funds to purchase and distribute food baskets to families who lost their livelihoods during the Coronavirus pandemic.",
+        total: 5000,
+        raised: 0)
       Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/cestas-basicas.png'), filename: 'cestas-basicas.png', content_type: 'image/png')
 
 User.create(
@@ -200,18 +217,71 @@ User.create(
     name: "Educandário João Paulo II",
     cnpj: "42.991.517/0001-30",
     address: User.last.address,
-    description: "Somos uma Fundação que abriga e tutela crianças órfãs desde 1952.")
+    description: "We are a Foundation that shelters and protects orphaned children since 1952.")
     Institution.last.photos.attach(io: File.open('app/assets/images/institutions/educandário.jpg'), filename: 'educandário.jpg', content_type: 'image/png')
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[4],
         type_donation: TYPES[0],
-        name: "Adote Sara!",
-        description: "Sara tem apenas 3 anos e foi recebida em nosso Educandário.  Ajude-a contribuindo com fundos para custear compra de materiais escolares, roupas e alimentos para serem utilizados durante o próximo trimestre",
-        total: 1800)
+        name: "Adopt Fabio!",
+        description: "Fábio is 9 years old and has been under our care since he was 2 years old. Help her by contributing funds to fund purchases of school supplies, clothing, and food to be used during the next quarter.",
+        total: 2000,
+        raised: 0)
+        Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/fabio.jpg'), filename: 'fabio.jpg', content_type: 'image/png')
+      Campaign.create(
+        institution_id: Institution.last.id,
+        category: CATEGORIES[4],
+        type_donation: TYPES[0],
+        name: "Adopt Sara!",
+        description: "Sara is only 3 years old and was received in our Educandário. Help her by contributing funds to fund purchases of school supplies, clothing, and food to be used during the next quarter.",
+        total: 1800,
+        raised: 0)
         Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/sara.jpeg'), filename: 'sara.jpeg', content_type: 'image/png')
 
 
-# https://www.fundacaosara.org.br/  - inspiração para a fundação EVA.
+puts "generating donations..."
+
+Campaign.all.each do |campaign|
+  percentage = [50, 75, 100].sample / 100.to_f  #percentage to cover the campaign
+  num_of_donors = rand(1..User.count-1) #number of donors available in DB
+  donors = User.all.reject {|user| user == campaign.institution.user}.sample(num_of_donors) #Select a random set of donors, excluding the owner of campaign
+  donors.each do |user|
+    if campaign.type_donation == TYPES[2]
+      quantity_donated = 1
+    else
+      quantity_donated = (percentage * campaign.total.to_f / donors.count).round
+    end
+    Donation.create(
+      campaign_id: campaign.id,
+      user_id: user.id,
+      quantity: quantity_donated)
+    campaign.raised = campaign.raised + quantity_donated
+    campaign.save
+  end
+end
+
+puts "generating Accontabilities and Reviews..."
+
+
+def review_comments(stars)
+  review_comments = ["Regular Accountability.", "Missing some information.", "They have to improve their Accountability."].sample if stars == 3
+  review_comments = ["Good Accountability!", "Rich Accontability information!", "Accountability almost perfect!"].sample if stars == 4
+  review_comments = ["Great Accountability!", "Definitely aproved!", "Accountability perfect!"].sample if stars == 5
+  review_comments
+end
+
+Campaign.all.select {|campaign| campaign.raised >= campaign.total}.each do |campaign|
+  Accountability.create(
+    campaign_id: campaign.id,
+    content: "Our Accontability Data")
+  campaign.donations.each do |donation|
+    stars = rand(3..5)
+    Review.create(
+      accountability_id: Accountability.last.id,
+      donation_id: donation.id,
+      star: stars,
+      comment: review_comments(stars))
+  end
+end
 
 puts "End of Seed!"

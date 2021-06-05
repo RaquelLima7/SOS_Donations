@@ -1,0 +1,80 @@
+<div class="container mt-5">
+  <h1> <%= #{@campaign.name}'%> accountability.</h1>
+
+  <span class="badge btn-primary"><%= @campaign.type_donation %></span>
+  <span class="badge btn-primary"> Total: <%= @campaign.total %></span>
+  <span class="badge btn-primary"> Collected: <%= @campaign.raised %></span>
+
+  <p class="badge btn-primary"><%= @campaign.category %></p>
+
+  <% if @accontability.photos.present? %>
+    <% @accontability.photos.each do |photo| %>
+      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+    <% end %>
+  <% else %>
+    <%= image_tag('neutral-avatar.png') %>
+  <% end %>
+
+  <hr>
+
+  <h3>See what donors are saying about campaign accountability.</h3>
+
+    <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Click here!
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">See all Reviews!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <% if @accontability.reviews.empty? %>
+            <small><em class="text-muted"> This Campaign has no reviews. <i class="fas fa-comments"></i></em></small>
+          <% else %>
+            <% @accontability.reviews.each do |review| %>
+              <div>
+                <span class="mb-2"><%= #{review.user.first_name} #{review.user.last_name} %></span>
+                <br>
+                <% review.rating.times do %>
+                  <i class="fas fa-star star"></i>
+                <% end %>
+                <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at)%> ago</em></small>
+                <p class="mb-2"><%= review.comment %></p>
+              </div>
+            <% end %>
+          <% end %>
+          <% @review.each do |review| %>
+            <div class="review-left">
+              <% if review.empty? %>
+                <small><em class="text-muted"> This Campaign has no reviews. <i class="fas fa-comments"></i></em></small>
+              <% else %>
+              <%= cl_image_tag review.donation.user.photo.key, class: "avatar-large" %><br>
+              <span><%= "#{review.donation.user.first_name} #{review.donation.user.last_name}" %></span><br>
+              <span><%= "Member since: #{review.donation.user.created_at.strftime("%d/%m/%Y")}" %></span><br>
+              <span class="badge badge-success"><%= "#{review.donation.user.donations.count} donations" %></span>
+            </div>
+            <div class="review-right">
+              <div class="review-comments mb-3">
+                <span><%= review.comment %>
+                  <% review.star.times do %>
+                    <i class="fas fa-star star text-warning"></i>
+                  <% end %>
+                </span>
+              </div>
+              <span><b>Reviewing on: </b></span><br>
+                <%= cl_image_tag review.accountability.campaign.photos.first.key, class: "" %><br>
+              <span class="badge badge-warning"><%= review.accountability.campaign.name %></span><br>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
