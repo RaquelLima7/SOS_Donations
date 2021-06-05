@@ -62,8 +62,8 @@
               <%= cl_image_tag campaign.photos.first.key, class: "card-img-top" %>
               <div class="d-none d-md-block card-body d-flex justify-content-around">
                 <h2><%= campaign.name %></h2>
-                <p class="badge badge-warning"><%= (campaign.raised / campaign.total.to_f * 100).floor %>% already donated!</p><br>
-                <p class="badge badge-warning">Still missing: <%= campaign.total - campaign.raised %>.</p><p class="mx-4 badge badge-warning">help us to complete it!</p>
+                <p class="badge badge-warning"><%= campaign.indicator %></p><br>
+                <p class="badge badge-warning">Still missing: <%= campaign.missing_expression %></p><p class="mx-4 badge badge-warning">help us to complete it!</p>
               </div>
             <% end %>
           </div>

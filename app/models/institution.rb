@@ -10,4 +10,14 @@ class Institution < ApplicationRecord
   validates :address, presence: true
 
   has_many_attached :photos
+
+  def rating
+    sum_stars = 0
+    count = 0
+    self.reviews.each do |review|
+      sum_stars += review.star
+      count += 1
+    end
+    count > 0 ? (sum_stars / count.to_f / 5 * 100).floor : nil
+  end
 end

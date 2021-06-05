@@ -21,8 +21,8 @@
     </div>
     <div class="col-sm-12 col-md-6 col-lg-8 institutions-top p-3">
       <h3 class=""><%= @institution.name %></h3>
-      <% if @rating %>
-        <span class="badge badge-warning p-2"><%= @rating %>% positive feedback</span><br>
+      <% if @institution.rating %>
+        <span class="badge badge-warning p-2"><%= @institution.rating %>% positive feedback</span><br>
       <% end %>
       <span><%= @institution.address %></span><br>
       <span>CNPJ: <%= @institution.cnpj %></span>
@@ -40,7 +40,7 @@
     </div>
   </div>
 
-  <% if @rating %>
+  <% if @institution.rating %>
     <h1 class="home-title">See Donation's Accountability Reviews for this Institution</h1>
   <% else %>
     <h1 class="badge badge-warning">This Institution still have no Accountability Reviews</h1>

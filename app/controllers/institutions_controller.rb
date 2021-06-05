@@ -6,13 +6,7 @@ class InstitutionsController < ApplicationController
   end
 
   def show
-    sum_stars = 0
-    count = 0
-    @institution.reviews.each do |review|
-      sum_stars += review.star
-      count += 1
-    end
-    count > 0 ? @rating = (sum_stars / count.to_f / 5 * 100).floor : @rating = nil
+
   end
 
   def new

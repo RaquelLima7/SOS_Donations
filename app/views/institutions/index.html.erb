@@ -20,6 +20,9 @@
             <% end %>
             <div class="card-body card-body-institution p-4">
               <h4 class="card-title card-institution-title"><%= institution.name %></h4>
+              <% if institution.rating %>
+                <span class="badge badge-warning p-2"><%= institution.rating %>% positive feedback</span><br>
+              <% end %>
               <span class="card-text card-institution-text"><%= institution.description.truncate(250, omission: '...') %></span>
             </div>
             <div class="card-links-institution d-flex justify-content-around align-middle p-2">

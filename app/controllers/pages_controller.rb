@@ -9,9 +9,10 @@ class PagesController < ApplicationController
       { name: "Eldery", filename: "eldery.jpg" },
       { name: "Children", filename: "children.jpg" },
       { name: "Education", filename: "education.jpg" },
-      { name: "Emergency Situations", filename: "emergency.jpg" }
+      { name: "Emergency Situations", filename: "emergency.jpg" },
+      { name: "Animal causes", filename: "animals.jpg" }
     ]
-    @urgent_campaigns = Campaign.all.reject {|campaign| campaign.raised >= campaign.total}.sort {|campaign| campaign.raised / campaign.total.to_f }.first(3)
+    @urgent_campaigns = Campaign.all.reject { |campaign| campaign.raised >= campaign.total }.sort { |campaign| campaign.raised / campaign.total.to_f }.first(3)
     @latest_reviews = Review.order(created_at: :desc).sample(5)
   end
 
