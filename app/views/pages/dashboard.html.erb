@@ -1,27 +1,169 @@
 <div class="container">
   <div class="row ">
-    <div class=" card p-4 col-sm-12 col-md-3 col-lg-4">
-      <div class="d-flex ">
-        
+<div class="container">
+  <div class="row dashboard-top-buffer">
+    <div class="user-account card p-4 col-sm-12 col-md-3 col-lg-4">
+      <div class="d-flex">
         <% if current_user.photo.present? %>
-          <%= cl_image_tag current_user.photo.key %>
+          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% else %>
           <%= image_tag('neutral-avatar.png') %>
         <% end %>
-        <div class=" ml-3" style="display:inline-block; align-self:flex-end;width:100%;">
+        <div class="user-account-info ml-3" style="display:inline-block; align-self:flex-end;width:100%;">
           <p><%= "#{current_user.first_name} #{current_user.last_name}" %></p>
           <p><%= current_user.email %></p>
-  
+         
+          <% if current_user.city %>
+            <div class="d-flex justify-content-end">
+              <p><i class="fa fa-map-marker-alt"></i><%= current_user.city %></p>
+              <%= link_to edit_user_path do %>
+                <i class="fas fa-pencil-alt mr-4"></i>
+              <% end %>
+              <%= link_to registration_path(current_user), method: :delete, data: { confirm: "Are you sure?"} do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            </div>
+          <%else%>
             <div class="d-flex justify-content-start">
-              <%= link_to edit_user_path(current_user) do %>
+              <%= link_to edit_user_path do %>
                 <i class="fas fa-pencil-alt mr-4"></i>
               <% end %>
               <%= link_to registration_path(current_user), method: :delete, data: { confirm: "Are you sure?"} do %>
                 <i class="fa fa-trash"></i>
               <%end%>
             </div>
+        <% end %>
         </div>
       </div>
+      <%= link_to 'Offer a new service!', new_service_path,  class: "btn btn-primary", style: 'margin-top:50px' %>
+    </div>
+    <div class="col-sm-12 col-md-9 col-lg-8">
+      <div class="navbar navbar-expand-lg navbar-light bg-light" id="navbar-account">
+        <ul class="navbar-nav mr-auto px-4">
+           <% if @results == 'orders' %>
+            <li class="nav-item active">
+          <% else %>
+            <li class="nav-item">
+          <% end %>
+            <%= link_to "Orders", dashboard_path(results_query: 'orders'), class: "nav-link" %>
+          </li>
+          <% if @results == 'services_offered' %>
+            <li class="nav-item active">
+          <% else %>
+            <li class="nav-item">
+          <% end %>
+            <%= link_to "Services Offered", dashboard_path(results_query: 'services_offered'), class: "nav-link" %>
+          </li>
+          <% if @results == 'services_sold' %>
+            <li class="nav-item active">
+          <% else %>
+            <li class="nav-item">
+          <% end %>
+            <%= link_to "Services Sold", dashboard_path(results_query: 'services_sold'), class: "nav-link" %>
+          </li>
+        </ul>
+      </div>
+      <div class="dashboard-results dashboard-top-buffer mx-3">
+        <% if @results == 'orders' %>
+          <% @orders.each do |order| %>
+          <div class="dashboard-results-card card my-4">
+            <div class="flex-area d-flex p-3">
+              <div class="principal" style="width:35%">
+                <% if current_user.photo %>
+                  <%= cl_image_tag order.service.user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <% else %>
+                  <%= image_tag('neutral-avatar.png') %>
+                <% end %>
+                <div class="user-account-info mt-3">
+                  <span><%= "#{order.service.user.first_name} #{order.service.user.last_name}" %></span>
+                  <span><%= order.service.user.email %></span>
+                  <span><i class="fa fa-map-marker-alt"></i><%= order.service.user.city %>
+                </div>
+              </div>
+              <div class="user-account-details ml-3">
+                <span><b><%= order.service.category.capitalize %></b></span>
+                <span><%= order.service.description %></span>
+                <span><b><%= number_to_currency(order.service.price, unit: "R$", separator: ",", delimiter: ".") %></b></span>
+                <span><i>Ordered at: <%= order.created_at.to_date %></i></span>
+                 <div class="user-account-button d-flex justify-content-end">
+                    <%= link_to service_path(order.service) do %>
+                      <i class="fas fa-search-plus px-4 size-icon"></i>
+                    <% end %>
+
+                    <%= link_to new_service_review_path(order.service.id) do %>
+                      <i class="fas fa-comments size-icon"></i>
+                    <% end %>
+                  </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <% elsif @results == 'services_offered' %>
+          <% @services.each do |service| %>
+          <div class="dashboard-results-card card my-4">
+            <div class="flex-area d-flex p-3">
+              <div class="principal" style="width:35%">
+                <% if current_user.photo %>
+                  <%= cl_image_tag service.user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <% else %>
+                  <%= image_tag('neutral-avatar.png') %>
+                <% end %>
+                <div class="user-account-info mt-3">
+                  <span><%= "#{service.user.first_name} #{service.user.last_name}" %></span>
+                  <span><%= service.user.email %></span>
+                  <span><i class="fa fa-map-marker-alt"></i><%= service.user.city%></span>
+                </div>
+              </div>
+              <div class="user-account-details ml-3">
+                <span><b><%= service.category.capitalize %></b></span>
+                <span><%= service.description %></span>
+                <span><b><%= number_to_currency(service.price, unit: "R$", separator: ",", delimiter: ".") %></b></span>
+                <span><i>Posted at: <%= service.created_at.to_date %></i></span>
+                <div class="user-account-button d-flex justify-content-end">
+                  <%= link_to service_path(service.id) do %>
+                      <i class="fas fa-search-plus size-icon"></i>
+                    <% end %>
+                  <%= link_to edit_service_path(service.id) do %>
+                    <i class="fas fa-pencil-alt ml-4 mr-4"></i>
+                  <% end %>
+                  <%= link_to service_path(service), method: :delete, data: { confirm: "Are you sure?"} do %>
+                    <i class="fa fa-trash"></i>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        <% elsif @results == 'services_sold' %>
+          <% @services.each do |service| %>
+            <% service.orders.each do |order| %>
+              <div class="dashboard-results-card card my-4">
+                <div class="flex-area d-flex p-3">
+                  <div class="principal" style="width:35%">
+                    <% if current_user.photo %>
+                      <%= cl_image_tag order.user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <% else %>
+                      <%= image_tag('neutral-avatar.png') %>
+                    <% end %>
+                    <div class="user-account-info mt-3">
+                      <p><%= "#{order.user.first_name} #{order.user.last_name}" %></p>
+                      <p><%= order.user.email %></p>
+                      <p><i class="fa fa-map-marker-alt"></i><%= order.user.city%></p>
+                    </div>
+                  </div>
+                  <div class="user-account-details ml-3">
+                    <span><b><%= order.service.category.capitalize %></b></span>
+                    <span><%= order.service.description %></span>
+                    <span><b><%= number_to_currency(order.service.price, unit: "R$", separator: ",", delimiter: ".") %></b></span>
+                    <span><i>Sold at: <%= order.created_at.to_date %></i></span>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+       </div>
     </div>
   </div>
 </div>
+
