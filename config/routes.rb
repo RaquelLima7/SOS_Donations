@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   get 'dashboard', to: 'pages#dashboard'
-  resources :users, only: [:edit, :update, :destroy]
+  resources :users, only: [:edit, :update]
   
   resources :institutions do
     resources :campaigns, only: [:new, :create]
