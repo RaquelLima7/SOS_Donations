@@ -1,7 +1,7 @@
 <div class="container devise-controllers col-sm-12 col-md-8 col-lg-6">
-  <h3>Please fill aditional info for: <i><%= @user.email %></i></h3>
+  <h3>Edit profile <i><%= @user.email %></i></h3>
 
-  <%= simple_form_for(@user, url: update_user_path, html: { method: :put }) do |f| %>
+  <%= simple_form_for(@user, url: user_path, html: { method: :put }) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
