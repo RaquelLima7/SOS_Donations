@@ -13,9 +13,9 @@
           <p><%= current_user.email %></p>
   
             <div class="d-flex justify-content-start">
-              <%# <%= link_to edit__path do %> 
+              <%= link_to edit_user_path(@user) do %>
                 <i class="fas fa-pencil-alt mr-4"></i>
-              <%# <%end%> 
+              <% end %>
               <%= link_to registration_path(current_user), method: :delete, data: { confirm: "Are you sure?"} do %>
                 <i class="fa fa-trash"></i>
               <%end%>
