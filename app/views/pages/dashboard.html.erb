@@ -62,7 +62,7 @@
                       <h4><b><%= donation.campaign.name %></b></h4>
                       <span><%= donation.campaign.description %></span>
                        <div class="user-account-info mt-3">
-                        <h5><b> <i class="fas fa-hand-holding-medical mr-2"></i><%= donation.campaign.type_donation%> <%= "#{donation.quantity}" %></b></h5 >
+                        <h5><b> <i class="fas fa-hand-holding-medical mr-2"></i><%= donation.donation_expression %></b></h5 >
                       </div>
                       <div class="user-account-button d-flex justify-content-end">
                         <%= link_to campaign_path(donation.campaign) do %>
