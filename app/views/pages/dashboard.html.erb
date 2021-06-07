@@ -50,22 +50,24 @@
                   <div class="flex-area d-flex p-3">
                     <div class="principal" style="width:35%">
                       <% if current_user.photo %>
-                        <%= cl_image_tag donation.campaign.institution.photos.first, class: "avatar-dashboard ", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                        <%= cl_image_tag donation.campaign.photos.first.key, class: "avatar-dash " %>
                       <% else %>
                         <%= image_tag('neutral-institution.jpg') %>
                       <% end %>
-                      
-                      <div class="user-account-info mt-3">
-                        <span><%= "#{donation}" %></span>
+                      <div>
+                        <span class="badge badge-primary"><i>Donated at: <%= donation.created_at.to_date %></i></span>
                       </div>
                     </div>
                     <div class="user-account-details ml-3">
-                      <span><%= donation.campaign.institution.name %></span>
-                      <span><i>Created at: <%= donation.created_at.to_date %></i></span>
+                      <h4><b><%= donation.campaign.name %></b></h4>
+                      <span><%= donation.campaign.description %></span>
+                       <div class="user-account-info mt-3">
+                        <h5><b> <i class="fas fa-hand-holding-medical mr-2"></i><%= donation.campaign.type_donation%> <%= "#{donation.quantity}" %></b></h5 >
+                      </div>
                       <div class="user-account-button d-flex justify-content-end">
-                        <%# <%= link_to institution_path(donation.institution) do %> %>
-                          <%# <i class="fas fa-search-plus px-4 size-icon"></i> %>
-                        <%# <% end %> %>
+                        <%= link_to campaign_path(donation.campaign) do %>
+                          <i class="h4 fas fa-search-plus"></i>
+                        <% end %>
                       </div>
                     </div>
                   </div>
