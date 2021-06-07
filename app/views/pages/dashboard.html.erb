@@ -10,7 +10,7 @@
               <%= image_tag('neutral-avatar.png') %>
             <% end %>
             <div class="user-account-info ml-3" style="display:inline-block; align-self:flex-end;width:100%;">
-              <p><%= "#{current_user.first_name} #{current_user.last_name}" %></p>
+              <h4><b><%= "#{current_user.first_name} #{current_user.last_name}" %></b></h4>
               <p><%= current_user.email %></p>
               <div class="d-flex justify-content-start">
                 <%= link_to edit_user_path(current_user) do %>
@@ -49,18 +49,23 @@
                 <div class="dashboard-results-card card my-4">
                   <div class="flex-area d-flex p-3">
                     <div class="principal" style="width:35%">
+                      <% if current_user.photo %>
+                        <%= cl_image_tag donation.campaign.institution.photos.first, class: "avatar-dashboard ", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                      <% else %>
+                        <%= image_tag('neutral-institution.jpg') %>
+                      <% end %>
                       
                       <div class="user-account-info mt-3">
-                        <span><%= "#{donation.institution.name}" %></span>
+                        <span><%= "#{donation}" %></span>
                       </div>
                     </div>
                     <div class="user-account-details ml-3">
-                      <span><%= donation.institution.description %></span>
+                      <span><%= donation.campaign.institution.name %></span>
                       <span><i>Created at: <%= donation.created_at.to_date %></i></span>
                       <div class="user-account-button d-flex justify-content-end">
-                        <%= link_to institution_path(donation.institution) do %>
-                          <i class="fas fa-search-plus px-4 size-icon"></i>
-                        <% end %>
+                        <%# <%= link_to institution_path(donation.institution) do %> %>
+                          <%# <i class="fas fa-search-plus px-4 size-icon"></i> %>
+                        <%# <% end %> %>
                       </div>
                     </div>
                   </div>
