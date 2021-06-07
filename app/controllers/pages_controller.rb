@@ -17,7 +17,9 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    
+    @results = params[:results_query]
+    @donations = current_user.donations
+    @institutions = current_user.institutions
   end
   
 end

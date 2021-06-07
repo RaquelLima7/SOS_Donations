@@ -1,0 +1,29 @@
+<div class="container devise-controllers col-sm-12 col-md-8 col-lg-6">
+  <h3>Edit profile <i><%= @user.email %></i></h3>
+
+  <%= simple_form_for(@user, url: user_path, html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <%= f.input :first_name,
+                  required: false,
+                  input_html: { autocomplete: "first-name" } %>
+      <%= f.input :last_name,
+                  required: false,
+                  input_html: { autocomplete: "last-name" } %>
+      <%= f.input :address,
+                  required: false,
+                  input_html: { autocomplete: "address" } %>
+       <%= f.input :photo, as: :file,
+                  required: false,
+                  input_html: { autocomplete: "Photo Avatar" } %>
+    <div class="form-actions">
+      <%= f.button :submit, "Update" %>
+    </div>
+  <% end %>
+
+  
+  <%= link_to '/dashboard' do %>
+    <i class="fa fa-undo"></i>
+  <% end %>
+</div>

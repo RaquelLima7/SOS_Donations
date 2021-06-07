@@ -1,27 +1,111 @@
 <div class="container">
   <div class="row ">
-    <div class=" card p-4 col-sm-12 col-md-3 col-lg-4">
-      <div class="d-flex ">
-        
-        <% if current_user.photo.present? %>
-          <%= cl_image_tag current_user.photo.key %>
-        <% else %>
-          <%= image_tag('neutral-avatar.png') %>
-        <% end %>
-        <div class=" ml-3" style="display:inline-block; align-self:flex-end;width:100%;">
-          <p><%= "#{current_user.first_name} #{current_user.last_name}" %></p>
-          <p><%= current_user.email %></p>
-  
-            <div class="d-flex justify-content-start">
-              <%# <%= link_to edit__path do %> 
-                <i class="fas fa-pencil-alt mr-4"></i>
-              <%# <%end%> 
-              <%= link_to registration_path(current_user), method: :delete, data: { confirm: "Are you sure?"} do %>
-                <i class="fa fa-trash"></i>
-              <%end%>
+    <div class="container">
+      <div class="row dashboard-top-buffer">
+        <div class="user-account card p-4 col-sm-12 col-md-3 col-lg-4">
+          <div class="d-flex">
+            <% if current_user.photo.present? %>
+              <%= cl_image_tag current_user.photo.key, class: "avatar-dashboard dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% else %>
+              <%= image_tag('neutral-avatar.png') %>
+            <% end %>
+            <div class="user-account-info ml-3" style="display:inline-block; align-self:flex-end; width:100%;">
+              <h4><b><%= "#{current_user.first_name} #{current_user.last_name}" %></b></h4>
+              <p><%= current_user.email %></p>
+              <div class="d-flex justify-content-start">
+                <%= link_to edit_user_path(current_user) do %>
+                  <i class="fas fa-pencil-alt mr-4"></i>
+                <% end %>
+                <%= link_to registration_path(current_user), method: :delete, data: { confirm: "Are you sure?"} do %>
+                  <i class="fa fa-trash"></i>
+                <%end%>
+              </div>
             </div>
+          </div>
+          <%= link_to 'Create a new institution',  new_institution_path,  class: "btn btn-primary", style: 'margin-top:50px' %>
+        </div>
+        <div class="col-sm-12 col-md-9 col-lg-8">
+          <div class="navbar navbar-expand-lg navbar-light bg-light" id="navbar-account">
+            <ul class="navbar-nav mr-auto px-4">
+              <% if @results == 'donations' %>
+                <li class="nav-item active">
+              <% else %>
+                <li class="nav-item">
+              <% end %>
+              <%= link_to "Donations", dashboard_path(results_query: 'donations'), class: "nav-link" %>
+              </li>
+              <% if @results == 'institutions' %>
+                <li class="nav-item active">
+              <% else %>
+                <li class="nav-item">
+              <% end %>
+              <%= link_to "Institutions", dashboard_path(results_query: 'institutions'), class: "nav-link" %>
+              </li>
+            </ul>
+          </div>
+          <div class="dashboard-results dashboard-top-buffer mx-3">
+            <% if @results == 'donations' %>
+              <% @donations.each do |donation| %>
+                <div class="dashboard-results-card card my-4">
+                  <div class="flex-area d-flex p-3">
+                    <div class="principal" style="width:35%">
+                      <% if current_user.photo %>
+                        <%= cl_image_tag donation.campaign.photos.first.key, class: "avatar-dash " %>
+                      <% else %>
+                        <%= image_tag('neutral-institution.jpg') %>
+                      <% end %>
+                      <div>
+                        <span class="badge badge-primary"><i>Donated at: <%= donation.created_at.to_date %></i></span>
+                      </div>
+                    </div>
+                    <div class="user-account-details ml-3">
+                      <h4><b><%= donation.campaign.name %></b></h4>
+                      <span><%= donation.campaign.description %></span>
+                       <div class="user-account-info mt-3">
+                        <h5><b> <i class="fas fa-hand-holding-medical mr-2"></i><%= donation.donation_expression %></b></h5 >
+                      </div>
+                      <div class="user-account-button d-flex justify-content-end">
+                        <%= link_to campaign_path(donation.campaign) do %>
+                          <i class="h4 fas fa-search-plus"></i>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="dashboard-results dashboard-top-buffer mx-3">
+            <% if @results == 'institutions' %>
+              <% @institutions.each do |institution| %>
+                <div class="dashboard-results-card card my-4">
+                  <div class="flex-area d-flex p-3">
+                    <div class="user-account-details ml-3">
+                      <h4><b><%= institution.name %></b></h4>
+                      <span><%= institution.address %></span> <br>
+                      <span><%= institution.cnpj %></span>
+                      <div>
+                        <span class="badge badge-primary"><i>Founded at: <%= institution.created_at.to_date %></i></span>
+                      </div>
+                      <hr>
+                      <span><%= institution.description %></span>
+
+                       <div class="user-account-info mt-3">
+                      </div>
+                      <div class="user-account-button d-flex justify-content-end">
+                        <%= link_to institution_path(institution) do %>
+                          <i class="h4 fas fa-search-plus"></i>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
