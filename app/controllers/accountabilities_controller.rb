@@ -1,23 +1,25 @@
 class AccountabilitiesController < ApplicationController
 
   def show
-    @accontability = Accontability.find(params[:id])
-    @campaign = Campaign.find(params[:id])
-    @review = Review.find(params[:id])
-    authorize @accontability
+    @accountability = Accountability.find(params[:id])
+    @campaign = Campaign.find(params[:campaign_id])
+    @reviews = @accountability.reviews
+    authorize @accountability
+    authorize @campaign
+    authorize @reviews
   end
 
   def new
-    @accontability = Accontability.new
-    authorize @accontability
+    @accountability = Accountability.new
+    authorize @accountability
   end
 
   def create
-    @accontability = Accontability.new(accontability_params)
-    authorize @accontability
-    @accontability.user = current_user
-    if @accontability.save
-      redirect_to accontability_path(@accontability)
+    @accountability = Accountability.new(accontability_params)
+    authorize @accountability
+    @accountability.user = current_user
+    if @accountability.save
+      redirect_to accontability_path(@accountability)
     else
       render :new
     end
