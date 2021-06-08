@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <h1> <%= #{@campaign.name}'%> accountability.</h1>
+  <h1> <%= @campaign.name %> accountability.</h1>
 
   <span class="badge btn-primary"><%= @campaign.type_donation %></span>
   <span class="badge btn-primary"> Total: <%= @campaign.total %></span>
@@ -7,8 +7,8 @@
 
   <p class="badge btn-primary"><%= @campaign.category %></p>
 
-  <% if @accontability.photos.present? %>
-    <% @accontability.photos.each do |photo| %>
+  <% if @accountability.photos.present? %>
+    <% @accountability.photos.each do |photo| %>
       <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
     <% end %>
   <% else %>
@@ -33,25 +33,27 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <% @review.each do |review| %>
-            <div class="review-left">
-              <% if review.empty? %>
-                <small><em class="text-muted"> This Campaign has no reviews. <i class="fas fa-comments"></i></em></small>
-              <% else %>
-              <%= cl_image_tag review.donation.user.photo.key, class: "avatar-large" %><br>
-              <span><%= "#{review.donation.user.first_name} #{review.donation.user.last_name}" %></span><br>
-              <span><%= "Member since: #{review.donation.user.created_at.strftime("%d/%m/%Y")}" %></span><br>
-              <span class="badge badge-success"><%= "#{review.donation.user.donations.count} donations" %></span>
-            </div>
-            <div class="review-right">
-              <div class="review-comments mb-3">
-                <span><%= review.comment %>
-                  <% review.star.times do %>
-                    <i class="fas fa-star star text-warning"></i>
-                  <% end %>
-                </span>
+            <% if @reviews.empty? %>
+              <small><em class="text-muted"> This Campaign has no reviews. <i class="fas fa-comments"></i></em></small>
+            <% else %>
+            <% @reviews.each do |review| %>
+              <div class="review-left">
+                <%= cl_image_tag review.donation.user.photo.key, class: "avatar-large" %><br>
+                <span><%= "#{review.donation.user.first_name} #{review.donation.user.last_name}" %></span><br>
+                <span><%= "Member since: #{review.donation.user.created_at.strftime("%d/%m/%Y")}" %></span><br>
+                <span class="badge badge-success"><%= "#{review.donation.user.donations.count} donations" %></span>
               </div>
-            </div>
+              <div class="review-right">
+                <div class="review-comments mb-3">
+                  <span><%= review.comment %>
+                    <% review.star.times do %>
+                      <i class="fas fa-star star text-warning"></i>
+                    <% end %>
+                  </span>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -60,3 +62,4 @@
     </div>
   </div>
 </div>
+
