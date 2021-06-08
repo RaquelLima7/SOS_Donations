@@ -11,7 +11,7 @@ class DonationsController < ApplicationController
     @donation.campaign = Campaign.find(params[:campaign_id])
     authorize @donation
     if @donation.save
-      redirect_to dashboard_path
+      redirect_to root_path
     else
       render :new
     end

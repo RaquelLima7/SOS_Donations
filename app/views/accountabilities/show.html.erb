@@ -21,11 +21,11 @@
 
     <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Click here!
+    Click here to see the reviews!
   </button>
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -33,21 +33,6 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <% if @accontability.reviews.empty? %>
-            <small><em class="text-muted"> This Campaign has no reviews. <i class="fas fa-comments"></i></em></small>
-          <% else %>
-            <% @accontability.reviews.each do |review| %>
-              <div>
-                <span class="mb-2"><%= #{review.user.first_name} #{review.user.last_name} %></span>
-                <br>
-                <% review.rating.times do %>
-                  <i class="fas fa-star star"></i>
-                <% end %>
-                <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at)%> ago</em></small>
-                <p class="mb-2"><%= review.comment %></p>
-              </div>
-            <% end %>
-          <% end %>
           <% @review.each do |review| %>
             <div class="review-left">
               <% if review.empty? %>
@@ -66,9 +51,6 @@
                   <% end %>
                 </span>
               </div>
-              <span><b>Reviewing on: </b></span><br>
-                <%= cl_image_tag review.accountability.campaign.photos.first.key, class: "" %><br>
-              <span class="badge badge-warning"><%= review.accountability.campaign.name %></span><br>
             </div>
         </div>
         <div class="modal-footer">
