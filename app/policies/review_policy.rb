@@ -13,4 +13,8 @@ class ReviewPolicy < ApplicationPolicy
     create?
   end
 
+  def show?
+    true
+  end
+
 end
