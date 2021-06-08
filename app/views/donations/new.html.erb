@@ -20,15 +20,56 @@
             <span class="badge btn-primary"> Collected: <%= @campaign.raised %></span>
           </div>
         </div>
-        <div class="card-body ">
-          <div class="mt-0">
-            <%= simple_form_for [ @campaign, @donation ] do |f| %>
-              <%= f.input :quantity, placeholder: 'Say How Much You Want To Donate.' %>
-              <%= f.submit class: 'btn btn-primary' %>
-            <% end %>
+          <div class="mt-4">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Payment
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Payment Gateway</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="wrapper">
+                        <div class="form-pay">
+                          <div class="space icon-relative">
+                            <label class="label">Card holder:</label>
+                            <input type="text" class="input" placeholder="Coding Market">
+                            <i class="fas payment-icon fa-user"></i>
+                          </div>
+                          <div class="space icon-relative">
+                            <label class="label">Card number:</label>
+                            <input type="text" class="input" data-mask="0000 0000 0000 0000" placeholder="Card Number">
+                            <i class="far payment-icon fa-credit-card"></i>
+                          </div>
+                          <div class="card-grp space">
+                            <div class="card-item icon-relative">
+                              <label class="label">Expiry date:</label>
+                              <input type="text" name="expiry-data" class="input" data-mask="00 / 00"  placeholder="00 / 00">
+                              <i class="far payment-icon fa-calendar-alt"></i>
+                            </div>
+                            <div class="card-item icon-relative">
+                              <label class="label">CVC:</label>
+                              <input type="text" class="input" data-mask="000" placeholder="000">
+                              <i class="fas payment-icon fa-lock"></i>
+                            </div>
+                          </div>
+                          <%= simple_form_for [ @campaign, @donation ] do |f| %>
+                            <%= f.input :quantity, placeholder: 'Say How Much You Want To Donate.' %>
+                            <%= f.submit "Make your donation", class: 'btn btn-primary' %>
+                          <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
       </div>
     </div>
   </div>
 </div>
+
