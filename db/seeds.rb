@@ -197,7 +197,7 @@ User.create(
       Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[0],
-        type_donation: TYPES[0],
+        type_donation: TYPES[1],
         name: "COVID-19 Food Baskets",
         description: "We are raising funds to purchase and distribute food baskets to families who lost their livelihoods during the Coronavirus pandemic.",
         total: 5000,
@@ -279,7 +279,8 @@ Campaign.all.each do |campaign|
     Donation.create(
       campaign_id: campaign.id,
       user_id: user.id,
-      quantity: quantity_donated)
+      quantity: quantity_donated,
+      anonymous: rand(1..100) < 20)
     campaign.raised = campaign.raised + quantity_donated
     campaign.save
   end
