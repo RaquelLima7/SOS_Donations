@@ -14,4 +14,7 @@ class Donation < ApplicationRecord
       "Donated: #{self.campaign.total} #{"item".pluralize(self.campaign.total)}"
     end
   end
+
+
+
 end
