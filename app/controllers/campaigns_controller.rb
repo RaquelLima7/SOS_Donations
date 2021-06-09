@@ -42,6 +42,11 @@ class CampaignsController < ApplicationController
   private
   def set_campaign
     @campaign = Campaign.find(params[:id])
+    if @campaign.type_donation == "Volunteer"
+      @donation_verb = "Volunteer"
+    else
+      @donation_verb = "Donate"
+    end
     authorize @campaign
   end
 

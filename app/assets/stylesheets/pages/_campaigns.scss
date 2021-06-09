@@ -7,3 +7,12 @@
 .card-campaign {
   min-height: 400px;
 }
+
+.card-show-img {
+  height: 100%;
+  width: 100%;
+  min-width: 25vw;
+  max-width: 33vw;
+  object-fit: contain;
+  flex-grow: 1;
+}

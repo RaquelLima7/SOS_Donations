@@ -9,8 +9,11 @@ class DonationsController < ApplicationController
     @donation = Donation.new(donation_params)
     @donation.user = current_user
     @donation.campaign = Campaign.find(params[:campaign_id])
+    @campaign = Campaign.find(params[:campaign_id])
+    @campaign.raised += @donation.quantity
     authorize @donation
-    if @donation.save
+    authorize @campaign
+    if @donation.save && @campaign.save
       redirect_to root_path
     else
       render :new
