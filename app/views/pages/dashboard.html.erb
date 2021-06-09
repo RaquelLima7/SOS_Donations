@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row ">
     <div class="container">
-      <div class="row dashboard-top-buffer">
+      <div class="row mt-3">
         <div class="user-account card p-4 col-sm-12 col-md-3 col-lg-4">
           <div class="d-flex">
             <% if current_user.photo.present? %>
@@ -40,6 +40,21 @@
                 <li class="nav-item">
               <% end %>
               <%= link_to "Institutions", dashboard_path(results_query: 'institutions'), class: "nav-link" %>
+              </li>
+              <% if @results == 'campaigns' %>
+                <li class="nav-item active">
+              <% else %>
+                <li class="nav-item">
+              <% end %>
+              <%= link_to "Campaigns", dashboard_path(results_query: 'campaugns'), class: "nav-link" %>
+              </li>
+
+              <% if @results == 'accountabilities' %>
+                <li class="nav-item active">
+              <% else %>
+                <li class="nav-item">
+              <% end %>
+              <%= link_to "Accountabilities", dashboard_path(results_query: 'accountabilities'), class: "nav-link" %>
               </li>
             </ul>
           </div>
@@ -103,6 +118,40 @@
               <% end %>
             <% end %>
           </div>
+
+
+          <div class="dashboard-results dashboard-top-buffer mx-3">
+            <% if @results == 'accountabilities' %>
+              <% @accountabilitties.each do |accountability| %>
+                <div class="dashboard-results-card card my-4">
+                  <div class="flex-area d-flex p-3">
+                    <div class="user-account-details ml-3">
+                      <h4><b><%= institution.name %></b></h4>
+                      <span><%= institution.address %></span> <br>
+                      <span><%= institution.cnpj %></span>
+                      <div>
+                        <span class="badge badge-primary"><i>Founded at: <%= institution.created_at.to_date %></i></span>
+                      </div>
+                      <hr>
+                      <span><%= institution.description %></span>
+
+                       <div class="user-account-info mt-3">
+                      </div>
+                      <div class="user-account-button d-flex justify-content-end">
+                        <%= link_to institution_path(institution) do %>
+                          <i class="h4 fas fa-search-plus"></i>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+
+
+          
         </div>
       </div>
     </div>
