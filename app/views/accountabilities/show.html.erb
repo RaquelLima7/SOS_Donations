@@ -1,23 +1,25 @@
 <div class="container mt-5">
-  <h1> <%= @campaign.name %> accountability.</h1>
+  <h1 class="text-center mb-5"> <%= @campaign.name %>'s accountability.</h1>
 
-  <span class="badge btn-primary"><%= @campaign.type_donation %></span>
-  <span class="badge btn-primary"> Total: <%= @campaign.total %></span>
-  <span class="badge btn-primary"> Collected: <%= @campaign.raised %></span>
-
-  <p class="badge btn-primary"><%= @campaign.category %></p>
-
-  <% if @accountability.photos.present? %>
-    <% @accountability.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+ <div class="mb-3">
+    <% if @accountability.photos.present? %>
+      <% @accountability.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, class: "img-accoun" %>
+      <% end %>
+    <% else %>
+      <%= image_tag('neutral-avatar.png', class: "img-accoun") %>
     <% end %>
-  <% else %>
-    <%= image_tag('neutral-avatar.png') %>
-  <% end %>
+    <div class="d-flex justify-content-center mt-5 mb-4">
+      <h4 class="pr-4"><span class="badge btn-primary"><%= @campaign.type_donation %></span></h4>
+      <h4 class="pr-4"><span class="badge btn-primary"> Total: <%= @campaign.total %></span></h4>
+      <h4 class="pr-4"><span class="badge btn-primary"> Collected: <%= @campaign.raised %></span></h4>
+      <h4 class="pr-4"><span class="badge btn-primary"><%= @campaign.category %></span></h4>
+    </div>
+  </div>
 
   <hr>
 
-  <h3>See what donors are saying about campaign accountability.</h3>
+  <h3 class="mt-4">See what donors are saying about campaign accountability.</h3>
 
     <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -26,7 +28,7 @@
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">See all Reviews!</h5>
@@ -51,6 +53,7 @@
                     <% end %>
                   </span>
                 </div>
+              <hr>
               </div>
             <% end %>
           <% end %>
