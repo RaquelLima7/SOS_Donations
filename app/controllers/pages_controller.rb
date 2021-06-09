@@ -20,6 +20,6 @@ class PagesController < ApplicationController
     @results = params[:results_query]
     @donations = current_user.donations
     @institutions = current_user.institutions
+    @accountabilities =  current_user.accountabilities
   end
-  
 end
