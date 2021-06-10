@@ -48,8 +48,13 @@
   <% @institution.reviews.each do |review| %>
     <div class="reviews-home p-3 mb-5 d-flex">
       <div class="review-left">
-        <%= cl_image_tag review.donation.user.photo.key, class: "avatar-large" %><br>
-        <span><%= "#{review.donation.user.first_name} #{review.donation.user.last_name}" %></span><br>
+        <% if review.donation.anonymous %>
+          <%= image_tag('neutral-avatar.png', class: "avatar-large") %><br>
+          <span><%= "Anonymous Donnor" %></span><br>
+        <% else %>
+          <%= cl_image_tag review.donation.user.photo.key, class: "avatar-large" %><br>
+          <span><%= "#{review.donation.user.first_name} #{review.donation.user.last_name}" %></span><br>
+        <% end %>
         <span><%= "Member since: #{review.donation.user.created_at.strftime("%d/%m/%Y")}" %></span><br>
         <span class="badge badge-success"><%= "#{review.donation.user.donations.count} donations" %></span>
       </div>

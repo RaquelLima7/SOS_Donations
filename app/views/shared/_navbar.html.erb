@@ -20,16 +20,11 @@
           <i class="fas fa-building px-2"></i>Institutions
         <% end %>
       </li>
-      <li class="nav-item">
-        <%= link_to "#", class: "nav-link"  do %>
-          <i class="fas fa-search px-2"></i>Search
-        <% end %>
-      </li>
       <% if user_signed_in? %>
      <!--    aqui tinha um link para button -->
         <li class="nav-item">
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown ml-3">
           <% if current_user.photo.present? %>
             <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", style: "cursor: pointer;", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% else %>

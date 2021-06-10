@@ -1,12 +1,12 @@
 <div class="container">
   <div class="mr- mt-4">
-    <h1><strong> Campaigns </b></h1>
+    <span class="badge badge-success" style="font-size: 2rem;"><strong><%= @campaigns_title %></b></span>
   </div>
   <div class="container mt-3">
     <div class="row mt-4">
 	    <% @campaigns.each do |campaign| %>
         <div class="col-lg-4 col-md-6 col-sm-12 mb-5">
-          <div class="card my-3 card-campaign h-100" style="width: 18rem;">
+          <div class="card my-3 card-campaign h-100 shadow" style="width: 18rem;">
              <% if campaign.photos.first.present? %>
                 <%= cl_image_tag campaign.photos.first.key, class: "card-img p-2" %>
               <% else %>

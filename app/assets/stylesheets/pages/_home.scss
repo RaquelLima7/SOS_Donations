@@ -93,7 +93,8 @@
 }
 
 .carousel-item a img {
-  height: 400px;
+  max-height: 400px;
+  @extend .img-fluid;
   object-fit: cover;
 }
 
