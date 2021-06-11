@@ -2,11 +2,9 @@ class AccountabilitiesController < ApplicationController
 
   def show
     @accountability = Accountability.find(params[:id])
-    @campaign = Campaign.find(params[:campaign_id])
+    @campaign = @accountability.campaign
     @reviews = @accountability.reviews
     authorize @accountability
-    authorize @campaign
-    authorize @reviews
   end
 
   def new

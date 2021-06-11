@@ -3,9 +3,9 @@
     <div class="col-12 col-md-6 offset-lg-3">
       <div class="bg-white rounded p-3 shadow">
         <h3>Add your review</h3>
-        <%= simple_form_for [ @accontability, @review ] do |f| %>
+        <%= simple_form_for([ @accountability, @donation, @review ]) do |f| %>
           <%= f.input :comment, placeholder: 'Tell us your review about the accountability.' %>
-           <%= f.input :rating, as: :select, collection: (1..5), required: true, prompt: "What's your rating?", input_html: { id: 'review_rating' } %>
+           <%= f.input :star, as: :select, collection: (1..5), required: true, prompt: "What's your rating?", input_html: { id: 'review_rating' } %>
           <%= f.submit "Submit review", class: 'btn btn-primary' %>
         <% end %>
       </div>

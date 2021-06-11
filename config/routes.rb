@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   resources :campaigns, only: [:show, :index, :edit, :update, :destroy] do
     resources :donations, only: [:new, :create]
-    resources :accountabilities, only: [:create, :new, :show] do
+    resources :accountabilities, only: [:create, :new]
+  end
+
+  resources :accountabilities, only: [:show] do
+    resources :donations, only: [:show] do
       resources :reviews, only: [:new, :create]
     end
   end
