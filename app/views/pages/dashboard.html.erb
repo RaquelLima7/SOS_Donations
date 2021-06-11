@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row ">
     <div class="container">
-      <div class="row dashboard-top-buffer">
+      <div class="row mt-3">
         <div class="user-account card p-4 col-sm-12 col-md-3 col-lg-4">
           <div class="d-flex">
             <% if current_user.photo.present? %>
@@ -41,6 +41,21 @@
               <% end %>
               <%= link_to "Institutions", dashboard_path(results_query: 'institutions'), class: "nav-link" %>
               </li>
+              <% if @results == 'campaigns' %>
+                <li class="nav-item active">
+              <% else %>
+                <li class="nav-item">
+              <% end %>
+              <%= link_to "Campaigns", dashboard_path(results_query: 'campaigns'), class: "nav-link" %>
+              </li>
+
+              <% if @results == 'accountabilities' %>
+                <li class="nav-item active">
+              <% else %>
+                <li class="nav-item">
+              <% end %>
+              <%= link_to "Accountabilities", dashboard_path(results_query: 'accountabilities'), class: "nav-link" %>
+              </li>
             </ul>
           </div>
           <div class="dashboard-results dashboard-top-buffer mx-3">
@@ -48,25 +63,70 @@
               <% @donations.each do |donation| %>
                 <div class="dashboard-results-card card my-4">
                   <div class="flex-area d-flex p-3">
-                    <div class="principal" style="width:35%">
-                      <% if current_user.photo %>
-                        <%= cl_image_tag donation.campaign.photos.first.key, class: "avatar-dash " %>
-                      <% else %>
-                        <%= image_tag('neutral-institution.jpg') %>
-                      <% end %>
+                    <div class="d-flex">
                       <div>
-                        <span class="badge badge-primary"><i>Donated at: <%= donation.created_at.to_date %></i></span>
+                        <% if current_user.photo %>
+                          <%= cl_image_tag donation.campaign.photos.first.key, class: "avatar-dash " %>
+                        <% else %>
+                          <%= image_tag('neutral-institution.jpg') %>
+                        <% end %>
+                        
+                      </div>
+                      <div class="user-account-details ml-3">
+                        <h4><b><%= donation.campaign.name %></b></h4>
+                        <span><%= donation.campaign.description %></span>
+                        <div class="user-account-info mt-3">
+                          <h5><b> <i class="fas fa-hand-holding-medical mr-2"></i><%= donation.donation_expression %></b></h5 >
+                        </div>
+                      
+                        <div class="user-account-button d-flex justify-content-between">
+                          <div>
+                            <span class="badge badge-primary"><i>Donated at: <%= donation.created_at.to_date %></i></span>
+                          </div>
+                          <%= link_to campaign_path(donation.campaign) do %>
+                            <i class="h3 fas fa-search-plus"></i>
+                          <% end %>
+                        </div>
                       </div>
                     </div>
-                    <div class="user-account-details ml-3">
-                      <h4><b><%= donation.campaign.name %></b></h4>
-                      <span><%= donation.campaign.description %></span>
-                       <div class="user-account-info mt-3">
-                        <h5><b> <i class="fas fa-hand-holding-medical mr-2"></i><%= donation.donation_expression %></b></h5 >
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="dashboard-results dashboard-top-buffer mx-3">
+            <% if @results == 'institutions' %>
+              <% @institutions.each do |institution| %>
+                <div class="dashboard-results-card card my-4">
+                  <div class="flex-area d-flex p-3">
+
+
+                    <div class=" user-account-details ml-3">
+                      <div class="d-flex">
+                        <div>
+                          <% if current_user.photo %>
+                            <%= cl_image_tag institution.photos.first.key, class: "avatar-dash " %>
+                          <% else %>
+                            <%= image_tag('neutral-institution.jpg') %>
+                          <% end %>
+                        </div>
+                        <div class="ml-3">
+                          <h4><b><%= institution.name %></b></h4>
+                          <span><%= institution.address %></span> <br>
+                          <span><%= institution.cnpj %></span>
+                          <div>
+                            <span class="badge badge-primary"><i>Founded at: <%= institution.created_at.to_date %></i></span>
+                          </div>
+                        </div>
                       </div>
+                     
+                     
+                      <hr>
+                      <span><%= institution.description %></span>
                       <div class="user-account-button d-flex justify-content-end">
-                        <%= link_to campaign_path(donation.campaign) do %>
-                          <i class="h4 fas fa-search-plus"></i>
+                        <%= link_to institution_path(institution) do %>
+                          <i class="h3   fas fa-search-plus"></i>
                         <% end %>
                       </div>
                     </div>
@@ -76,26 +136,48 @@
             <% end %>
           </div>
           <div class="dashboard-results dashboard-top-buffer mx-3">
-            <% if @results == 'institutions' %>
-              <% @institutions.each do |institution| %>
+            <% if @results == 'campaigns' %>
+              <% @campaigns.each do |campaign| %>
                 <div class="dashboard-results-card card my-4">
                   <div class="flex-area d-flex p-3">
                     <div class="user-account-details ml-3">
-                      <h4><b><%= institution.name %></b></h4>
-                      <span><%= institution.address %></span> <br>
-                      <span><%= institution.cnpj %></span>
+                      <h4><b><%= campaign.name %></b></h4>
                       <div>
-                        <span class="badge badge-primary"><i>Founded at: <%= institution.created_at.to_date %></i></span>
+                        <span class="badge badge-primary"><%= campaign.category%></span>
+                        <span class="badge badge-primary"><i>Created at: <%= campaign.created_at.to_date %></i></span>
                       </div>
                       <hr>
-                      <span><%= institution.description %></span>
+                      <span><%= campaign.description %></span>
+                      
+                    </div>
+                    
+                  </div>
+                  <div class="user-account-button d-flex justify-content-end mr-3 mb-2">
+                    <%= link_to campaign_path(campaign) do %>
+                      <i class="h3 fas fa-search-plus"></i>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
 
-                       <div class="user-account-info mt-3">
+
+          <div class="dashboard-results dashboard-top-buffer mx-3">
+            <% if @results == 'accountabilities' %>
+              <% @accountabilities.each do |accountability| %>
+                <div class="dashboard-results-card card my-4">
+                  <div class="flex-area d-flex p-3">
+                    <div class="user-account-details ml-3">
+                      <h4><b> Accoutability for <%= accountability.campaign.name %></b></h4>
+                      <div>
+                        <span class="badge badge-primary"><i>Created at: <%= accountability.created_at.to_date %></i></span>
                       </div>
                       <div class="user-account-button d-flex justify-content-end">
-                        <%= link_to institution_path(institution) do %>
+                        <%= link_to campaign_accountability_path(accountability.campaign_id, accountability.id) do %>
                           <i class="h4 fas fa-search-plus"></i>
                         <% end %>
+
                       </div>
                     </div>
                   </div>
@@ -103,6 +185,10 @@
               <% end %>
             <% end %>
           </div>
+
+
+
+          
         </div>
       </div>
     </div>

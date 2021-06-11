@@ -5,5 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :institutions
   has_many :donations
+  has_many :campaigns, through: :institutions
+  has_many :accountabilities, through: :campaigns
+  
   has_one_attached :photo
 end
