@@ -8,11 +8,11 @@
 <div class="container d-flex dashboard-top-buffer">
   <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-5">
-      <h4 class="mt-2">We have <%= pluralize(@institutions.count, 'Institution') %></h3>
+      <span class="mt-2 badge badge-success" style="font-size: 2rem">We have <%= pluralize(@institutions.count, 'Institution') %></span>
       <hr>
       <% @institutions.each do |institution| %>
         <div class="shadow">
-          <div class="card card-institution mb-5">
+          <div class="card card-institution mb-5 shadow">
             <% if institution.photos.first.present? %>
               <%= cl_image_tag institution.photos.first.key, class: "p-2" %>
             <% else %>
@@ -30,7 +30,7 @@
                 <i class="fas fa-hands-helping px-2"></i><span>Campaigns</span>
               <% end %>
               <%= link_to institution_path(institution), class: "nav-institution" do %>
-                <i class="fas fa-search-plus size-icon px-2"></i><span>More Info</span>
+                <i class="fas fa-search-plus size-icon px-2"></i>
               <% end %>
             </div>
           </div>

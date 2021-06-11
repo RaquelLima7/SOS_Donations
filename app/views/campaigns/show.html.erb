@@ -1,35 +1,39 @@
 <div class="container my-5">
-  <div class="card d-flex">
+  <div class="card d-flex p-3 shadow">
     <div class="d-flex justify-content-around ml-5 mr-5">
       <div class="container">
         <div class="mt-5">
-          <h1><b> <%= @campaign.name.capitalize %></b> </h1>
+          <h1 class="text-center"><b> <%= @campaign.name.capitalize %></b> </h1>
         </div>
         <div class="my-2">
-          <p class="text-justify mt-3 mr-4"> <%= @campaign.description.capitalize %>
+          <p class="text-justify"> <%= @campaign.description.capitalize %>
+          <div class="campaing-info">
+            <div class="d-flex justify-content-around">
+              <% if @campaign.raised >= @campaign.total %>
+                <span class="badge btn-warning">Campagin Complete!</span>
+              <% end %>
+              <span class="badge btn-primary"><%= @campaign.category %></span>
+              <span class="badge btn-primary"><%= @campaign.type_donation %></span>
+            </div>
+              <div class="progress mt-3">
+                <div class="progress-bar" role="progressbar" style="width: <%= @campaign.raised / @campaign.total.to_f * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= @campaign.raised %> / <%= @campaign.total %></div>
+              </div>
+           </div>
+          <div class="d-flex justify-content-center mt-4">
+            <div class="div">
+              <%= link_to @donation_verb, new_campaign_donation_path(@campaign), class: 'btn btn-primary'%>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="div mt-3">
+      <div class="">
         <% if @campaign.photos.first.present? %>
-          <%= cl_image_tag @campaign.photos.first.key, class: "card-img p-2" %>
+          <%= cl_image_tag @campaign.photos.first.key, class: "card-img card-show-img p-2" %>
         <% else %>
           <%= image_tag('neutral-institution.jpg', class: "p-2") %>
         <% end %>
       </div>
     </div>
-    <div class="d-flex justify-content-between align-items-center ml-5 mb-3">
-      <div class="div">
-        <%= link_to 'Donation', new_campaign_donation_path(@campaign), class: 'btn btn-primary'%>
-      </div>  
-      <div class="d-flex justify-content-end mr-5 mt-4 mb-2">
-        <%= link_to campaigns_path do%>
-          <i class="h3 fas fa-undo-alt mt-2 ml-4"></i>
-        <% end %>
-        <%= link_to edit_campaign_path(@campaign.id) do %>
-          <i class="h3 fas fa-pencil-alt mt-2 ml-4 mr-2"></i>
-        <% end %>
-        
-      </div>
-    </div>
+
   </div>
 </div>

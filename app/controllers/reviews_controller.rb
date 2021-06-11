@@ -1,15 +1,16 @@
 class ReviewsController < ApplicationController
 
   def new
-    @review = Campaign.find(params[:campaign_id])
-    @donation = Donation.new
-    authorize @donation
+    @review = Review.new
+    @donation = Donation.find(params[:donation_id])
+    @accountability = Accountability.find(params[:accountability_id])
+    authorize @review
   end
 
   def create
     @review = Review.new(review_params)
-    @review.user = current_user
-    # @review.campaign = Campaign.find(params[:campaign_id])
+    @review.donation = Donation.find(params[:donation_id])
+    @review.accountability = Accountability.find(params[:accountability_id])
     authorize @review
     if @review.save
       redirect_to dashboard_path
