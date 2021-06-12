@@ -300,6 +300,7 @@ Campaign.all.select {|campaign| campaign.raised >= campaign.total}.each do |camp
   Accountability.create(
     campaign_id: campaign.id,
     content: "Our Accontability Data")
+    Accountability.last.photos.attach(io: File.open('app/assets/images/neutral-accountability.jpeg'), filename: 'neutral-accountability.jpeg', content_type: 'image/png')
   campaign.donations.each do |donation|
     stars = rand(3..5)
     Review.create(
@@ -309,5 +310,152 @@ Campaign.all.select {|campaign| campaign.raised >= campaign.total}.each do |camp
       comment: review_comments(stars))
   end
 end
+
+#FAVELA ZAP SEED
+User.create(
+  email: "favela@gmail.com",
+  first_name: "Favela",
+  last_name: "Zap",
+  address: "Ladeira da Glória, 26",
+  password: "123456",
+  password_confirmation: "123456")
+  User.last.photo.attach(io: File.open('app/assets/images/avatar/avatar-28.jpeg'), filename: 'avatar.jpeg', content_type: 'image/png')
+  Institution.create(
+    user_id: User.last.id,
+    name: "Favela Zap @Batch-540",
+    cnpj: "44.129.502/0001-92",
+    address: User.last.address,
+    description: "We are a non-profit NGO that helps community residents. We seek to bring information and donations to the most needy, help us to bring hope to the vulnerable population.")
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/favela-zap.jpeg'), filename: 'favela-zap.jpeg', content_type: 'image/png')
+  Campaign.create(
+        institution_id: Institution.last.id,
+        category: CATEGORIES[1],
+        type_donation: TYPES[2],
+        name: "Work at Favela Zap",
+        description: "We need jornalists as volunteers at our website FavelaZap!.  The volunteer will write articles to inform local population about news.",
+        total: 2,
+        raised: 0)
+        Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/favelazap-jornalista.jpg'), filename: 'favelazap-jornalista.jpg', content_type: 'image/png')
+  User.create(
+    email: "augusto@gmail.com",
+    first_name: "Augusto",
+    last_name: "FavelaZap",
+    address: "Ladeira da Glória, 26",
+    password: "123456",
+    password_confirmation: "123456")
+    User.last.photo.attach(io: File.open('app/assets/images/avatar/Augusto.jpeg'), filename: 'Augusto.jpeg', content_type: 'image/png')
+  Donation.create(
+    campaign_id: Campaign.last.id,
+    user_id: User.last.id,
+    quantity: 1,
+    anonymous: false)
+  User.create(
+    email: "roberto@gmail.com",
+    first_name: "Roberto",
+    last_name: "FavelaZap",
+    address: "Ladeira da Glória, 26",
+    password: "123456",
+    password_confirmation: "123456")
+    User.last.photo.attach(io: File.open('app/assets/images/avatar/jornalista_avatar.jpg'), filename: 'jornalista_avatar.jpg', content_type: 'image/png')
+  Donation.create(
+    campaign_id: Campaign.last.id,
+    user_id: User.last.id,
+    quantity: 1,
+    anonymous: false)
+
+  jornalism_campaign = Campaign.last
+  jornalism_campaign.raised = 2
+  jornalism_campaign.save
+
+  Accountability.create(
+    campaign_id: Campaign.last.id,
+    content: "Excellent journalists, they provided a great volunteer service by writing articles on our website to inform community residents about new developments.")
+  Accountability.last.photos.attach(io: File.open('app/assets/images/accountabilities/jornalista_accountability.jpg'), filename: 'jornalista_accountability.jpg', content_type: 'image/png')
+  Campaign.last.donations.each do |donation|
+    stars = 5
+    Review.create(
+      accountability_id: Accountability.last.id,
+      donation_id: donation.id,
+      star: stars,
+      comment: review_comments(stars))
+  end
+
+  Campaign.create(
+        institution_id: Institution.last.id,
+        category: CATEGORIES[5],
+        type_donation: TYPES[0],
+        name: "Donate School supplies",
+        description: "We are receiving donations of School supplies for children at Rocinha Comunity.",
+        total: 2000,
+        raised: 0)
+        Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/favela-material.jpg'), filename: 'favela-material.jpg', content_type: 'image/png')
+
+#SAVE THE RANGO SEED
+  User.create(
+    email: "savetherango@gmail.com",
+    first_name: "Save",
+    last_name: "The Rango",
+    address: "Ladeira da Glória, 26",
+    password: "123456",
+    password_confirmation: "123456")
+  User.last.photo.attach(io: File.open('app/assets/images/avatar/avatar-31.jpeg'), filename: 'avatar.jpeg', content_type: 'image/png')
+  Institution.create(
+    user_id: User.last.id,
+    name: "Save the Rango @Batch-540",
+    cnpj: "62.574.339/0001-59",
+    address: User.last.address,
+    description: "We are an institution that aims to prevent food waste. In this way, we are looking for food donations that have a close expiration date and without any intention of consumption. Help us fight hunger and food waste.")
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/sdfg.png'), filename: 'sdfg.png', content_type: 'image/png')
+  Campaign.create(
+        institution_id: Institution.last.id,
+        category: CATEGORIES[1],
+        type_donation: TYPES[1],
+        name: "Donate Fruits and Vegetables",
+        description: "We need donations of fruits and vegetables that are close to spoiling and with no consumption forecast in order to avoid wasting food.",
+        total: 1000,
+        raised: 0)
+        Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/save-fruits.jpg'), filename: 'save-fruits.jpg', content_type: 'image/png')
+
+    percentage = 1  #percentage to cover the campaign
+    num_of_donors = 5
+    campaign = Campaign.last
+    donors = User.all.reject {|user| user == campaign.institution.user}.sample(num_of_donors) #Select a random set of donors, excluding the owner of campaign
+    donors.each do |user|
+      if campaign.type_donation == TYPES[2]
+        quantity_donated = 1
+      else
+        quantity_donated = (percentage * campaign.total.to_f / donors.count).round
+      end
+      Donation.create(
+        campaign_id: Campaign.last.id,
+        user_id: user.id,
+        quantity: quantity_donated,
+        anonymous: rand(1..100) < 20)
+      campaign.raised = campaign.raised + quantity_donated
+      campaign.save
+    end
+
+  Accountability.create(
+    campaign_id: Campaign.last.id,
+    content: "The fruits and vegetables that were donated were delivered to the residents of the Maré community who lost their jobs due to the pandemic. It was delivered on June 11, 2021 in the afternoon. Residents were very grateful for the donations.")
+  Accountability.last.photos.attach(io: File.open('app/assets/images/accountabilities/save-fruits-accountability.jpg'), filename: 'save-fruits-accountability.jpg', content_type: 'image/png')
+  Campaign.last.donations.each do |donation|
+    stars = 5
+    Review.create(
+      accountability_id: Accountability.last.id,
+      donation_id: donation.id,
+      star: stars,
+      comment: review_comments(stars))
+  end
+
+  Campaign.create(
+        institution_id: Institution.last.id,
+        category: CATEGORIES[1],
+        type_donation: TYPES[1],
+        name: "Donation of non-perishable food.",
+        description: "We need non-perishable food donations that are close to their expiration date and with no consumption forecast to avoid food waste.",
+        total: 1000,
+        raised: 0)
+        Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/save-non-perecible.jpg'), filename: 'save-non-perecible.jpg', content_type: 'image/png')
 
 puts "End of Seed!"
