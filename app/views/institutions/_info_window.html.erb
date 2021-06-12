@@ -1,0 +1,9 @@
+<div class="principal p-2">
+  <p><b><%= institution.name %></b></p>
+  <% if institution.photos.present? %>
+    <%= cl_image_tag institution.photos.first.key, class: "text-center", style: "width: 100%; height: auto;"  %>
+  <% end %>
+  <p class="mt-2"><%= institution.description %> </p>
+</div>
+
+<%= link_to "More details", institution_path(institution), class: "text-right" %>
