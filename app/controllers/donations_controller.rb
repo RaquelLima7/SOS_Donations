@@ -11,6 +11,12 @@ class DonationsController < ApplicationController
     @donation.campaign = Campaign.find(params[:campaign_id])
     @campaign = Campaign.find(params[:campaign_id])
     @campaign.raised += @donation.quantity
+    if @campaign.raised >= @campaign.total && @campaign.accountabilities.empty?
+      @accountability = Accountability.new
+      @accountability.campaign = @campaign
+      @accountability.save
+    end
+
     authorize @donation
     authorize @campaign
     if @donation.save && @campaign.save
