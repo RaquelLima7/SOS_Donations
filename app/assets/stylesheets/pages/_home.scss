@@ -19,6 +19,7 @@
   color: white;
 }
 
+
 .donation-type a {
   height: 150px;
   color: white;
@@ -26,7 +27,8 @@
   flex-direction: column;
   justify-content: center;
   text-decoration: none;
-}
+  text-align: center;
+  }
 
 .donation-type:hover {
   opacity: 0.7;
@@ -34,9 +36,10 @@
 
 .donation-categories {
   @extend .border-0;
-  @extend .mt-3;
+  @extend .mb-2;
   display: flex;
   justify-content: flex-end !important;
+  box-shadow: 2px 2px 4px #888888;
 }
 
 .donation-categories:hover {
@@ -101,10 +104,13 @@
 .reviews-home {
   background-color: #44A245;
   opacity: 0.9;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px #888888;
+
 }
 
 .review-left {
-  min-width: 25%;
+  min-width: 35%;
 }
 
 .review-right img {
@@ -113,10 +119,22 @@
 
 .home-title {
   @extend .text-center;
-  @extend .my-5;
+  @extend .mt-5;
+  @extend .mb-3;
   @extend .p-2;
   @extend .badge;
   @extend .badge-success;
   font-size: 2.5rem;
   @extend .w-100;
+  border-radius: 5px;
+}
+
+.img-home {
+  height: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.shadow-home {
+  box-shadow: 1px 1px 2px #888888;
 }
