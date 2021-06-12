@@ -177,7 +177,7 @@
                     <span class="badge badge-primary"><i>Created at: <%= accountability.created_at.to_date %></i></span>
                   </div>
                   <div class="user-account-button d-flex justify-content-end">
-                    <%= link_to campaign_accountabilities_path(accountability.campaign_id, accountability.id) do %>
+                    <%= link_to accountability_path(accountability.id) do %>
                       <i class="h4 fas fa-search-plus"></i>
                     <% end %>
 
