@@ -12,7 +12,20 @@
 @import "components/index";
 @import "pages/index";
 
-#app-div {
-  min-height: calc(100vh - 100px);
-  background-color: #EAF6DE;
+body {
+  position: relative;
+  height: 100vh;
+
+}
+#site-wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: block;
+}
+#site-content {
+  min-height: 100vh;
+  padding-bottom: 100px;
+  overflow: hidden;
+  display: block;
+  position: relative;
 }
