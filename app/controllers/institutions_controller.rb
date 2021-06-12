@@ -3,6 +3,15 @@ class InstitutionsController < ApplicationController
 
   def index
     @institutions = policy_scope(Institution)
+
+     # the `geocoded` scope filters only flats with coordinates (latitude & longitude)
+    @markers = @institutions.geocoded.map do |institution|
+      {
+        lat: institution.latitude,
+        lng: institution.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { institution: institution })
+      }
+    end
   end
 
   def show
