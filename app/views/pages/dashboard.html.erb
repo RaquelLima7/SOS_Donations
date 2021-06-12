@@ -156,6 +156,7 @@
                 </div>
               </div>
               <div class="user-account-button d-flex justify-content-end mr-3 mb-2">
+                <%= link_to 'New accountability', new_campaign_accountability_path(campaign, @accontability ), class: 'btn btn-primary mr-4 mb-2'%>
                 <%= link_to edit_campaign_path(campaign) do%>
                   <i class="h3 fas fa-edit mr-3"></i>
                 <% end %>
