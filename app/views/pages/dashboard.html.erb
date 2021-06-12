@@ -98,8 +98,6 @@
           <% @institutions.each do |institution| %>
             <div class="dashboard-results-card card my-4">
               <div class="flex-area d-flex p-3">
-
-
                 <div class=" user-account-details ml-3">
                   <div class="d-flex">
                     <div>
@@ -121,6 +119,7 @@
                   <hr>
                   <span><%= institution.description %></span>
                   <div class="user-account-button d-flex justify-content-end">
+                    <%= link_to 'New campaign', new_institution_campaign_path(institution), class: 'btn btn-primary mr-4'%>
                      <%= link_to edit_institution_path(institution) do%>
                         <i class="h3 fas fa-edit mr-3"></i>
                       <% end %>
