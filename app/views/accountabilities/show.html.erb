@@ -1,22 +1,22 @@
 <div class="container mt-5">
-  <h1 class="text-center mb-5"> <%= @campaign.name %>'s accountability.</h1>
+  <h1 class="text-center mb-4"> <%= @campaign.name %>'s accountability.</h1>
 
- <div class="mb-3">
-    <% if @accountability.photos.present? %>
-      <% @accountability.photos.each do |photo| %>
-        <%= cl_image_tag photo.key, class: "img-accoun" %>
-      <% end %>
-    <% else %>
-      <%= image_tag('neutral-avatar.png', class: "img-accoun") %>
-    <% end %>
-    <div class="d-flex justify-content-center mt-5 mb-4">
+ <div class="mb-5">
+    <div class="d-flex justify-content-center mb-4">
       <h4 class="pr-4"><span class="badge btn-primary"><%= @campaign.type_donation %></span></h4>
       <h4 class="pr-4"><span class="badge btn-primary"> Total: <%= @campaign.total %></span></h4>
       <h4 class="pr-4"><span class="badge btn-primary"> Collected: <%= @campaign.raised %></span></h4>
       <h4 class="pr-4"><span class="badge btn-primary"><%= @campaign.category %></span></h4>
     </div>
+    <% if @accountability.photos.present? %>
+      <% @accountability.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, class: "img-accoun" %>
+      <% end %>
+    <% else %>
+      <h4><i> There is no accountability information yet. </i>😢 </h4>
+    <% end %>
     <div>
-      <p class="text-justify"><%= @accountability.content %></p>
+      <p class="text-justify mt-5"><%= @accountability.content %></p>
     </div>
   </div>
 
