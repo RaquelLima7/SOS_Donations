@@ -8,16 +8,18 @@
       <h4 class="pr-4"><span class="badge btn-primary"> Collected: <%= @campaign.raised %></span></h4>
       <h4 class="pr-4"><span class="badge btn-primary"><%= @campaign.category %></span></h4>
     </div>
-    <% if @accountability.photos.present? %>
-      <% @accountability.photos.each do |photo| %>
-        <%= cl_image_tag photo.key, class: "img-accoun" %>
+      <% if @accountability.photos.present? %>
+        <% @accountability.photos.each do |photo| %>
+          <%= cl_image_tag photo.key, class: "img-accoun" %>
+        <% end %>
+      <% else %>
+        <h4><i> There is no accountability information yet. </i>😢 </h4>
       <% end %>
-    <% else %>
-      <h4><i> There is no accountability information yet. </i>😢 </h4>
-    <% end %>
-    <div>
-      <p class="text-justify mt-5"><%= @accountability.content %></p>
-    </div>
+      <div>
+      <% if @accountability.content %>
+        <p class="text-justify mt-5"><%= @accountability.content %></p>
+      <% end %>
+      </div>
   </div>
 
   <hr>
