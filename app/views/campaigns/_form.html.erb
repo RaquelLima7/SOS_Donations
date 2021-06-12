@@ -1,9 +1,9 @@
-<%= simple_form_for @campaign do |f| %>
+<%= simple_form_for [ @institution, @campaign ] do |f| %>
           <%= f.input :name, placeholder: 'Name of Campaign' %>
           <%= f.input :description, placeholder: 'Type a description about the capaign' %>
           <%= f.input :total %>
-          <%= f.input :category, as: :select, collection: ["Coronavirus", "Hunger and Poverty", "Health", "Eldery", "Children", "Education", "Emergency Situations"], placeholder: 'Select one category' %>
-          <%# <%= f.input :type_category %>
+          <%= f.input :category, as: :select, collection: ["Coronavirus", "Hunger and Poverty", "Health", "Eldery", "Children", "Education", "Emergency Situations", "Animal causes"], placeholder: 'Select one category' %>
+          <%= f.input :type_donation, as: :select, collection: ["Fundrising", "Donation", "Volunteer"], placeholder: 'Select one type.' %>
           <%= f.input :photos, as: :file, input_html: { multiple: true }  %>
           <%= f.submit class: 'btn btn-primary' %>
 <% end %>

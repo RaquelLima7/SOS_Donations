@@ -16,6 +16,9 @@ class InstitutionsController < ApplicationController
 
   def create
     @institution = Institution.new(institution_params)
+    if @institution.photos.empty?
+      @institution.photos.attach(io: File.open('app/assets/images/neutral-institution.jpg'), filename: 'neutral-institution.jpg', content_type: 'image/png')
+    end
     authorize @institution
     @institution.user = current_user
     if @institution.save
