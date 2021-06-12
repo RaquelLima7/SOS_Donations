@@ -31,7 +31,7 @@
 
   <div class="row mb-3">
     <% @CATEGORIES.each do |category| %>
-    <div class="card col-sm-12 col-md-6 col-lg-3 donation-categories">
+    <div class="card col-sm-12 col-md-6 col-lg-3 donation-categories", style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))>
       <%= link_to campaigns_path(category: category[:name] ) do %>
         <%= image_tag(category[:filename], class: "card-img-top") %>
         <div class="card-body donation-categories-info">
