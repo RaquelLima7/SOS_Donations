@@ -101,7 +101,7 @@
                   <div class="d-flex">
                     <div>
                       <% if current_user.photo %>
-                        <%= cl_image_tag institution.photos.first.key, class: "avatar-dash " %>
+                        <%= cl_image_tag institution.photos.first.key, class: "avatar-logo " %>
                       <% else %>
                         <%= image_tag('neutral-institution.jpg') %>
                       <% end %>
@@ -160,7 +160,7 @@
           <% end %>
         <% end %>
       </div>
-      
+
       <div class="dashboard-results dashboard-top-buffer mx-3">
         <% if @results == 'accountabilities' %>
           <% @accountabilities.each do |accountability| %>
@@ -175,7 +175,7 @@
               </div>
                 <div class="user-account-button d-flex justify-content-end mr-3 mb-1">
                     <%= link_to accountability_path(accountability.id) do %>
-                      <i class="h4 fas fa-search-plus"></i>
+                      <i class="h3 fas fa-search-plus"></i>
                     <% end %>
                   </div>
             </div>
