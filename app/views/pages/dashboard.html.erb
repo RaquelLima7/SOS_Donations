@@ -22,6 +22,7 @@
       </div>
       <%= link_to 'Create a new institution',  new_institution_path,  class: "btn btn-primary", style: 'margin-top:50px' %>
     </div>
+
     <div class="col-sm-12 col-md-9 col-lg-8">
       <div class="navbar navbar-expand-lg navbar-light bg-light" id="navbar-account">
         <ul class="navbar-nav mr-auto px-4">
@@ -46,7 +47,6 @@
           <% end %>
           <%= link_to "Campaigns", dashboard_path(results_query: 'campaigns'), class: "nav-link" %>
           </li>
-
           <% if @results == 'accountabilities' %>
             <li class="nav-item active">
           <% else %>
@@ -56,6 +56,7 @@
           </li>
         </ul>
       </div>
+
       <div class="dashboard-results dashboard-top-buffer mx-3">
         <% if @results == 'donations' %>
           <% @donations.each do |donation| %>
@@ -68,7 +69,6 @@
                     <% else %>
                       <%= image_tag('neutral-institution.jpg') %>
                     <% end %>
-                    
                   </div>
                   <div class="user-account-details ml-3">
                     <h4><b><%= donation.campaign.name %></b></h4>
@@ -76,7 +76,6 @@
                     <div class="user-account-info mt-3">
                       <h5><b> <i class="fas fa-hand-holding-medical mr-2"></i><%= donation.donation_expression %></b></h5 >
                     </div>
-                  
                     <div class="user-account-button d-flex justify-content-between">
                       <div>
                         <span class="badge badge-primary"><i>Donated at: <%= donation.created_at.to_date %></i></span>
@@ -98,8 +97,6 @@
           <% @institutions.each do |institution| %>
             <div class="dashboard-results-card card my-4">
               <div class="flex-area d-flex p-3">
-
-
                 <div class=" user-account-details ml-3">
                   <div class="d-flex">
                     <div>
@@ -134,6 +131,7 @@
           <% end %>
         <% end %>
       </div>
+
       <div class="dashboard-results dashboard-top-buffer mx-3">
         <% if @results == 'campaigns' %>
           <% @campaigns.each do |campaign| %>
@@ -147,9 +145,7 @@
                   </div>
                   <hr>
                   <span><%= campaign.description %></span>
-                  
                 </div>
-                
               </div>
               <div class="user-account-button d-flex justify-content-end mr-3 mb-2">
                 <%= link_to edit_campaign_path(campaign) do%>
@@ -164,8 +160,7 @@
           <% end %>
         <% end %>
       </div>
-
-
+      
       <div class="dashboard-results dashboard-top-buffer mx-3">
         <% if @results == 'accountabilities' %>
           <% @accountabilities.each do |accountability| %>
@@ -176,22 +171,17 @@
                   <div>
                     <span class="badge badge-primary"><i>Created at: <%= accountability.created_at.to_date %></i></span>
                   </div>
-                  <div class="user-account-button d-flex justify-content-end">
+                </div>
+              </div>
+                <div class="user-account-button d-flex justify-content-end mr-3 mb-1">
                     <%= link_to accountability_path(accountability.id) do %>
                       <i class="h4 fas fa-search-plus"></i>
                     <% end %>
-
                   </div>
-                </div>
-              </div>
             </div>
           <% end %>
         <% end %>
       </div>
-
-
-
-      
     </div>
   </div>
 </div>
