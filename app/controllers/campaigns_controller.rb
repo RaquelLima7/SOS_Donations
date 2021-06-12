@@ -25,25 +25,26 @@ class CampaignsController < ApplicationController
   def show; end
 
   def new
-    @institution = Institution.find(params[:institution])
+    @institution = Institution.find(params[:institution_id])
     @campaign = Campaign.new
     authorize @campaign
   end
   
 
-  def create 
-    raise
-    @campaign = Campaign.new
-    @campaign.institution = current_user
-    @campaign.institution = Institution.find(params[:institution_id])
+  def create
+    @institution = Institution.find(params[:institution_id])
+    @campaign = Campaign.new(campaign_params)
+    @campaign.institution = @institution
+    if @campaign.photos.empty?
+      @campaign.photos.attach(io: File.open('app/assets/images/neutral-institution.jpg'), filename: 'neutral-institution.jpg', content_type: 'image/png')
+    end
+    @campaign.raised = 0
     authorize @campaign
     if @campaign.save
-      redirect_to campaign_path(results_query: 'campaigns')
+      redirect_to campaign_path(@campaign)
     else
-      render :new
+      render :new 
     end
-
- 
   end
   
   def edit; end
@@ -65,6 +66,6 @@ class CampaignsController < ApplicationController
   end
 
   def campaign_params
-    params.require(:campaign).permit(:name, :description, :category, :total, :photo)
+    params.require(:campaign).permit(:name, :description, :category, :total, :type_donation, :photos)
   end
 end
