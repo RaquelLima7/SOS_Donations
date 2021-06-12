@@ -118,11 +118,12 @@
                       </div>
                     </div>
                   </div>
-                  
-                  
                   <hr>
                   <span><%= institution.description %></span>
                   <div class="user-account-button d-flex justify-content-end">
+                     <%= link_to edit_institution_path(institution) do%>
+                        <i class="h3 fas fa-edit mr-3"></i>
+                      <% end %>
                     <%= link_to institution_path(institution) do %>
                       <i class="h3   fas fa-search-plus"></i>
                     <% end %>
@@ -151,8 +152,12 @@
                 
               </div>
               <div class="user-account-button d-flex justify-content-end mr-3 mb-2">
+                <%= link_to edit_campaign_path(campaign) do%>
+                  <i class="h3 fas fa-edit mr-3"></i>
+                <% end %>
+
                 <%= link_to campaign_path(campaign) do %>
-                  <i class="h3 fas fa-search-plus"></i>
+                  <i class="h3 fas fa-search-plus "></i>
                 <% end %>
               </div>
             </div>
