@@ -326,7 +326,7 @@ User.create(
     cnpj: "44.129.502/0001-92",
     address: User.last.address,
     description: "We are a non-profit NGO that helps community residents. We seek to bring information and donations to the most needy, help us to bring hope to the vulnerable population.")
-  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/favela-zap.jpeg'), filename: 'favela-zap.jpeg', content_type: 'image/png')
+  Institution.last.photos.attach(io: File.open('app/assets/images/institutions/favela-zap-new.jpeg'), filename: 'favela-zap-new.jpeg', content_type: 'image/png')
   Campaign.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[1],
