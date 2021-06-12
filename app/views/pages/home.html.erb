@@ -5,9 +5,9 @@
     <%= link_to "Join us!", new_user_registration_path, class: "btn btn-primary w-25 mt-4 p-2", style: "font-size: 1rem; color: white" if !user_signed_in?%>
   </div>
 </div>
-<div class="container">
-  <div class="row mb-3">
-    <div class="col-4 donation-type" style="background-color: #44a245">
+<div class="container", style="background-color: #EAF6DE">
+  <div class="row mb-3 shadow-home">
+    <div class="col-4 donation-type", style="background-color: #44a245">
       <%= link_to campaigns_path(type_donation: "Fundrising" ) do %>
         <h2>Fundrising</h2>
         <span>Help social acts and projects by given funds!</span>
@@ -27,11 +27,11 @@
     </div>
   </div>
 
-  <h1 class="home-title">Find Campaigns</h1>
+  <h2 class="home-title">Find Campaigns</h2>
 
-  <div class="row mb-3">
+  <div class="row mb-2">
     <% @CATEGORIES.each do |category| %>
-    <div class="card col-sm-12 col-md-6 col-lg-3 donation-categories">
+    <div class="card col-sm-12 col-md-6 col-lg-3 donation-categories ml-0.5 mr-0.5 pt-2 pb-2">
       <%= link_to campaigns_path(category: category[:name] ) do %>
         <%= image_tag(category[:filename], class: "card-img-top") %>
         <div class="card-body donation-categories-info">
@@ -80,27 +80,27 @@
     </a>
   </div>
 
-<h1 class="home-title">Donation's Accountability Reviews</h1>
+  <h1 class="home-title">Donation's Accountability Reviews</h1>
 
   <% @latest_reviews.each do |review| %>
-    <div class="reviews-home p-3 mb-5 d-flex">
+    <div class="reviews-home p-3 mb-5 d-flex justify-content-between">
       <div class="review-left">
-        <%= cl_image_tag review.donation.user.photo.key, class: "avatar-large" %><br>
-        <span><%= "#{review.donation.user.first_name} #{review.donation.user.last_name}" %></span><br>
-        <span><%= "Member since: #{review.donation.user.created_at.strftime("%d/%m/%Y")}" %></span><br>
-        <span class="badge badge-success"><%= "#{review.donation.user.donations.count} donations" %></span>
-      </div>
-      <div class="review-right">
-        <div class="review-comments mb-3">
-          <span><%= review.comment %>
+        <%= cl_image_tag review.donation.user.photo.key, class: "avatar-home" %><br>
+        <h5><b><%= "#{review.donation.user.first_name} #{review.donation.user.last_name}" %></b></h5>
+        <span class="badge badge-success", style="font-size: 0.8rem"><%= "#{review.donation.user.donations.count} donations" %></span><br>
+         <div class="review-comments mb-3">
+          <b><span><%= review.comment %>
             <% review.star.times do %>
-              <i class="fas fa-star star text-warning"></i>
+              <i class="fas fa-star star text-warning ", style= "text-shadow: 2px 2px 4px #012F00;"></i>
             <% end %>
-          </span>
+          </span></b>
         </div>
+        <span><%= "Member since: #{review.donation.user.created_at.strftime("%d/%m/%Y")}" %></span><br>
+        <span class="badge badge-warning", style="font-size: 0.8rem"><%= review.accountability.campaign.name %></span><br>
+      </div>
+      <div>
         <span><b>Reviewing on: </b></span><br>
-        <%= cl_image_tag review.accountability.campaign.photos.first.key, class: "" %><br>
-        <span class="badge badge-warning"><%= review.accountability.campaign.name %></span><br>
+        <%= cl_image_tag review.accountability.campaign.photos.first.key, class: "img-home" %><br>
       </div>
     </div>
   <% end %>
