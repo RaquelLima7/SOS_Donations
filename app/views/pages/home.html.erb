@@ -6,7 +6,7 @@
   </div>
 </div>
 <div class="container", style="background-color: #EAF6DE">
-  <div class="row mb-3 shadow-home">
+  <div class="row shadow-home">
     <div class="col-4 donation-type", style="background-color: #44a245">
       <%= link_to campaigns_path(type_donation: "Fundrising" ) do %>
         <h2>Fundrising</h2>
@@ -27,11 +27,11 @@
     </div>
   </div>
 
-  <h2 class="home-title">Find Campaigns</h2>
+  <h1 class="home-title" >Find Campaigns</h1>
 
-  <div class="row mb-2">
+  <div class="row">
     <% @CATEGORIES.each do |category| %>
-    <div class="card col-sm-12 col-md-6 col-lg-3 donation-categories ml-0.5 mr-0.5 pt-2 pb-2">
+    <div class="card-grid col-sm-12 col-md-6 col-lg-3 donation-categories">
       <%= link_to campaigns_path(category: category[:name] ) do %>
         <%= image_tag(category[:filename], class: "card-img-top") %>
         <div class="card-body donation-categories-info">
@@ -44,7 +44,7 @@
 
   <h1 class="home-title">Urgent campaigns</h1>
 
-  <div id="carousel-indicators-urgent" class="carousel slide" data-ride="carousel">
+  <div id="carousel-indicators-urgent" class="carousel slide mt-3" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carousel-indicators-urgent" data-slide-to="0" class="active"></li>
       <li data-target="#carousel-indicators-urgent" data-slide-to="1"></li>
@@ -83,24 +83,24 @@
   <h1 class="home-title">Donation's Accountability Reviews</h1>
 
   <% @latest_reviews.each do |review| %>
-    <div class="reviews-home p-3 mb-5 d-flex justify-content-between">
-      <div class="review-left">
+    <div class="reviews-home p-3 mt-3 mb-5 d-flex justify-content-start py-4">
+      <div class="review-left ml-4">
         <%= cl_image_tag review.donation.user.photo.key, class: "avatar-home" %><br>
-        <h5><b><%= "#{review.donation.user.first_name} #{review.donation.user.last_name}" %></b></h5>
+        <span style="font-size: 1.2rem"><b><%= "#{review.donation.user.first_name} #{review.donation.user.last_name}" %></b></h5><br>
         <span class="badge badge-success", style="font-size: 0.8rem"><%= "#{review.donation.user.donations.count} donations" %></span><br>
-         <div class="review-comments mb-3">
-          <b><span><%= review.comment %>
+         <div class="review-comments">
+          <b><span style="font-size: 1rem"><%= review.comment %><br>
             <% review.star.times do %>
               <i class="fas fa-star star text-warning ", style= "text-shadow: 2px 2px 4px #012F00;"></i>
             <% end %>
           </span></b>
         </div>
-        <span><%= "Member since: #{review.donation.user.created_at.strftime("%d/%m/%Y")}" %></span><br>
-        <span class="badge badge-warning", style="font-size: 0.8rem"><%= review.accountability.campaign.name %></span><br>
+        <span style="font-size: 0.8rem"><b><%= "Member since: #{review.donation.user.created_at.strftime("%d/%m/%Y")}" %></b></span><br>
       </div>
-      <div>
+      <div class="ml-5" >
         <span><b>Reviewing on: </b></span><br>
         <%= cl_image_tag review.accountability.campaign.photos.first.key, class: "img-home" %><br>
+        <span class="badge badge-warning mt-2", style="font-size: 0.8rem"><%= review.accountability.campaign.name %></span><br>
       </div>
     </div>
   <% end %>

@@ -19,6 +19,7 @@
   color: white;
 }
 
+
 .donation-type a {
   height: 150px;
   color: white;
@@ -35,10 +36,10 @@
 
 .donation-categories {
   @extend .border-0;
-  @extend .mt-3;
+  @extend .mb-2;
   display: flex;
   justify-content: flex-end !important;
-  box-shadow: 3px 3px 5px #888888;
+  box-shadow: 2px 2px 4px #888888;
 }
 
 .donation-categories:hover {
@@ -109,7 +110,7 @@
 }
 
 .review-left {
-  min-width: 25%;
+  min-width: 35%;
 }
 
 .review-right img {
@@ -118,7 +119,8 @@
 
 .home-title {
   @extend .text-center;
-  @extend .my-3;
+  @extend .mt-5;
+  @extend .mb-3;
   @extend .p-2;
   @extend .badge;
   @extend .badge-success;
@@ -135,9 +137,4 @@
 
 .shadow-home {
   box-shadow: 1px 1px 2px #888888;
-}
-
-.carousel-slide {
-  box-shadow: 1px 1px 2px #888888;
-
 }
