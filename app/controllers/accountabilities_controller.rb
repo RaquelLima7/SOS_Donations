@@ -12,6 +12,11 @@ class AccountabilitiesController < ApplicationController
     authorize @accountability
   end
 
+  def edit
+    @accountability = Accountability.new
+    authorize @accountability
+  end
+
   def create
     @accountability = Accountability.new(accontability_params)
     authorize @accountability

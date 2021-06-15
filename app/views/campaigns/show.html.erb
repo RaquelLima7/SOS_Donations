@@ -3,10 +3,10 @@
     <div class="d-flex justify-content-around ml-5 mr-5">
       <div class="container">
         <div class="mt-5">
-          <h1 class="text-center"><b> <%= @campaign.name.capitalize %></b> </h1>
+          <h1 class="text-center"><b> <%= @campaign.name %></b> </h1>
         </div>
         <div class="my-2">
-          <p class="text-justify"> <%= @campaign.description.capitalize %>
+          <p class="text-justify"> <%= @campaign.description %>
           <div class="campaing-info">
             <div class="d-flex justify-content-around">
               <% if @campaign.raised >= @campaign.total %>
