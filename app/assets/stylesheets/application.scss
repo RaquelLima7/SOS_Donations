@@ -16,6 +16,8 @@
   min-height: calc(100vh - 100px);
 }
 body {
+  position: relative;
+  height: 100vh;
   background-color: #EAF6DE;
 }
 
