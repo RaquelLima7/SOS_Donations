@@ -24,7 +24,7 @@
               <% if @campaign.raised >= @campaign.total && @campaign.accountabilities.present? %>
                 <%= link_to "Accountabilty", accountability_path(@campaign.accountabilities.first.id), class: 'btn btn-primary'%>
               <% else %>
-                <%= link_to @donation_verb, new_campaign_donation_path(@campaign), class: 'btn btn-primary'%>
+                <%= link_to @donation_verb, new_campaign_donation_path(@campaign), class: "btn btn-primary"%>
               <% end %>
             </div>
           </div>

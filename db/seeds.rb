@@ -385,7 +385,7 @@ User.create(
         category: CATEGORIES[5],
         type_donation: TYPES[0],
         name: "Donate School Supplies",
-        description: "We are fundrising for School supplies for children at Rocinha Comunity.",
+        description: "We are fundrising for School Supplies for children at Rocinha Comunity.",
         total: 2000,
         raised: 0)
         Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/favela-material.jpg'), filename: 'favela-material.jpg', content_type: 'image/png')

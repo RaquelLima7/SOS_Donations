@@ -20,7 +20,7 @@ class DonationsController < ApplicationController
     authorize @donation
     authorize @campaign
     if @donation.save && @campaign.save
-      redirect_to dashboard_path(results_query: 'donations')
+      redirect_to dashboard_path(results_query: "donations")
     else
       render :new
     end
