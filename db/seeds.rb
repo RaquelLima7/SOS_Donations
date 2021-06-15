@@ -384,8 +384,8 @@ User.create(
         institution_id: Institution.last.id,
         category: CATEGORIES[5],
         type_donation: TYPES[0],
-        name: "Donate School supplies",
-        description: "We are receiving donations of School supplies for children at Rocinha Comunity.",
+        name: "Donate School Supplies",
+        description: "We are fundrising for School Supplies for children at Rocinha Comunity.",
         total: 2000,
         raised: 0)
         Campaign.last.photos.attach(io: File.open('app/assets/images/campaigns/favela-material.jpg'), filename: 'favela-material.jpg', content_type: 'image/png')
