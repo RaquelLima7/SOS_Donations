@@ -9,9 +9,9 @@ class Donation < ApplicationRecord
     if self.campaign.type_donation == "Volunteer"
       "Voluntered!"
     elsif self.campaign.type_donation == "Fundrising"
-      "Donated: R$#{self.campaign.total}"
+      "Donated: R$#{self.quantity}"
     else
-      "Donated: #{self.campaign.total} #{"item".pluralize(self.campaign.total)}"
+      "Donated: #{self.quantity} #{"item".pluralize(self.quantity)}"
     end
   end
 
