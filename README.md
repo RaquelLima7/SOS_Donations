@@ -1,4 +1,5 @@
-![logo_blank](https://sos-donations.herokuapp.com/assets/sos-donations-logo-b4ce111f01c7acbeea1a5ce15f9ddad6d0cd1f685313df294e7275f8dc5de5ad.png)
+![logo_blank](https://github.com/RaquelLima7/SOS_Donations/blob/master/app/assets/images/sos-donations-logo.png)
+<br>
 
 Project made with Ruby on Rails and deployed to Heroku at https://sos-donations.herokuapp.com/.
 
